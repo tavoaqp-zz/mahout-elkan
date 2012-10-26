@@ -1,0 +1,124 @@
+package org.apache.mahout.clustering.elkan;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.WritableComparable;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
+import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.elkan.ElkanStep2Job.ElkanStep2Mapper;
+import org.apache.mahout.clustering.iterator.ClusterIterator;
+import org.apache.mahout.clustering.iterator.ClusteringPolicy;
+import org.apache.mahout.clustering.kmeans.KMeansConfigKeys;
+import org.apache.mahout.common.ClassUtils;
+import org.apache.mahout.common.distance.DistanceMeasure;
+import org.apache.mahout.math.DenseVector;
+import org.apache.mahout.math.Vector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class ElkanStep3Job {
+
+	public static int run(Path input, Path output, Configuration conf) {
+		try {
+			Job job = new Job(conf, "Update vector data job.");
+
+			job.setMapperClass(ElkanStep3Mapper.class);
+			job.setMapOutputKeyClass(Text.class);
+			job.setMapOutputValueClass(ElkanVectorWritable.class);
+
+			job.setReducerClass(Reducer.class);
+			job.setOutputKeyClass(Text.class);
+			job.setOutputValueClass(ElkanVectorWritable.class);
+
+			job.setOutputFormatClass(SequenceFileOutputFormat.class);
+			FileOutputFormat.setOutputPath(job, output);
+
+			job.setInputFormatClass(SequenceFileInputFormat.class);
+			FileInputFormat.setInputPaths(job, input);
+
+			job.setJarByClass(ElkanStep1Job.class);
+
+			job.waitForCompletion(true);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace(System.err);
+			return 1;
+		}
+
+		return 0;
+	}
+
+	public static class ElkanStep3Mapper
+			extends
+			Mapper<WritableComparable<?>, ElkanVectorWritable, WritableComparable<?>, ElkanVectorWritable> {
+		private static final Logger log = LoggerFactory
+				.getLogger(ElkanStep3Mapper.class);
+
+		private ElkanClassifier classifier;
+
+		private ClusteringPolicy policy;
+		
+		private List<Cluster> newModels;
+		
+		private List<Cluster> oldModels;
+		
+		private DistanceMeasure measure;
+		
+		private Vector oldClusterDistances;
+
+		@Override
+		protected void setup(Context context) throws IOException,
+				InterruptedException {
+			Configuration conf = context.getConfiguration();
+			String measureClass = conf.get(KMeansConfigKeys.DISTANCE_MEASURE_KEY);
+		    measure = ClassUtils.instantiateAs(measureClass, DistanceMeasure.class);
+			
+			String priorClustersPath = conf.get(ClusterIterator.PRIOR_PATH_KEY);
+			classifier = new ElkanClassifier();
+			classifier.readFromSeqFiles(conf, new Path(priorClustersPath));
+			policy = classifier.getPolicy();
+			policy.update(classifier);
+			String newPriorClustersPath = conf.get(ElkanIterator.NEW_PRIOR_PATH_KEY);
+			newModels=classifier.readNewModelsFromSeqFiles(conf, new Path(newPriorClustersPath));
+			oldModels=classifier.getModels();
+			oldClusterDistances=new DenseVector(newModels.size());
+			for (int i=0;i<newModels.size();i++)
+			{
+				Vector oldCenter=oldModels.get(i).getCenter();
+				Vector newCenter=newModels.get(i).getCenter();
+				oldClusterDistances.setQuick(i, measure.distance(oldCenter,newCenter));
+			}
+			
+			super.setup(context);
+		}
+
+		@Override
+		protected void map(WritableComparable<?> key,
+				ElkanVectorWritable value, Context context) throws IOException,
+				InterruptedException {
+			ElkanVector vector = value.get();
+			for(int i=0;i<oldClusterDistances.size();i++)
+			{
+				double clusterDist=oldClusterDistances.getQuick(i);
+				double max=Math.max(vector.getLowerLimits().get(i)-clusterDist, 0);
+				vector.getLowerLimits().setQuick(i, max);
+			}
+			double centerDist=oldClusterDistances.getQuick(vector.getClusterId());
+			vector.setUpperLimit(vector.getUpperLimit()+centerDist);
+			vector.setCalculateDistance(true);
+			//log.info(vector.toString());
+			context.write(key, new ElkanVectorWritable(vector));
+		}
+	}
+}

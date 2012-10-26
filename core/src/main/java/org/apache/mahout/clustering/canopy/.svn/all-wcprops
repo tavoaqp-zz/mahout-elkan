@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/canopy
+END
+CanopyClusterer.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1298406/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/canopy/CanopyClusterer.java
+END
+CanopyReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1304490/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/canopy/CanopyReducer.java
+END
+CanopyDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/canopy/CanopyDriver.java
+END
+Canopy.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1293712/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/canopy/Canopy.java
+END
+CanopyConfigKeys.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1176603/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/canopy/CanopyConfigKeys.java
+END
+CanopyMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1243386/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/canopy/CanopyMapper.java
+END

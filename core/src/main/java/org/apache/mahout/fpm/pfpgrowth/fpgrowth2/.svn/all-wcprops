@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1394439/mahout/trunk/core/src/main/java/org/apache/mahout/fpm/pfpgrowth/fpgrowth2
+END
+FPGrowthIds.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/fpm/pfpgrowth/fpgrowth2/FPGrowthIds.java
+END
+FPTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1394439/mahout/trunk/core/src/main/java/org/apache/mahout/fpm/pfpgrowth/fpgrowth2/FPTree.java
+END
+FPGrowthObj.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/fpm/pfpgrowth/fpgrowth2/FPGrowthObj.java
+END

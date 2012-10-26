@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1352052/mahout/trunk/integration/src/main/java/org/apache/mahout/text
+END
+SequenceFilesFromMailArchives.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1352052/mahout/trunk/integration/src/main/java/org/apache/mahout/text/SequenceFilesFromMailArchives.java
+END
+SequenceFilesFromDirectoryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1180043/mahout/trunk/integration/src/main/java/org/apache/mahout/text/SequenceFilesFromDirectoryFilter.java
+END
+MailArchivesClusteringAnalyzer.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1352052/mahout/trunk/integration/src/main/java/org/apache/mahout/text/MailArchivesClusteringAnalyzer.java
+END
+PrefixAdditionFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1180043/mahout/trunk/integration/src/main/java/org/apache/mahout/text/PrefixAdditionFilter.java
+END
+WikipediaToSequenceFile.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1337989/mahout/trunk/integration/src/main/java/org/apache/mahout/text/WikipediaToSequenceFile.java
+END
+TextParagraphSplittingJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1241988/mahout/trunk/integration/src/main/java/org/apache/mahout/text/TextParagraphSplittingJob.java
+END
+SequenceFilesFromDirectory.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1183642/mahout/trunk/integration/src/main/java/org/apache/mahout/text/SequenceFilesFromDirectory.java
+END

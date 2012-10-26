@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1338525/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/email
+END
+PrepEmailReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1338501/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/email/PrepEmailReducer.java
+END
+PrepEmailVectorsDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1243557/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/email/PrepEmailVectorsDriver.java
+END
+PrepEmailMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1338525/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/email/PrepEmailMapper.java
+END

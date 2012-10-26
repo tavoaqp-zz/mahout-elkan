@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/asf/!svn/ver/1396888/mahout/trunk/core/src/test/java/org/apache/mahout/clustering
+END
+TestGaussianAccumulators.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1164014/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/TestGaussianAccumulators.java
+END
+ClusteringTestUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/ClusteringTestUtils.java
+END
+TestClusterInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1243386/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/TestClusterInterface.java
+END

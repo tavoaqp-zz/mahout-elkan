@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/asf/!svn/ver/1397344/mahout/trunk/math/src/main/java/org/apache/mahout/math/set
+END
+AbstractSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1339121/mahout/trunk/math/src/main/java/org/apache/mahout/math/set/AbstractSet.java
+END
+OpenHashSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1397344/mahout/trunk/math/src/main/java/org/apache/mahout/math/set/OpenHashSet.java
+END
+HashUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1397344/mahout/trunk/math/src/main/java/org/apache/mahout/math/set/HashUtils.java
+END

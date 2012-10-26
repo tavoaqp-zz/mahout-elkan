@@ -1,0 +1,89 @@
+10
+
+dir
+1401943
+http://svn.apache.org/repos/asf/mahout/trunk/core/src/main/java/org/apache/mahout
+http://svn.apache.org/repos/asf
+
+
+
+2012-10-12T09:11:02.211235Z
+1397481
+srowen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13f79535-47bb-0310-9956-ffa450edef68
+
+fpm
+dir
+
+classifier
+dir
+
+ep
+dir
+
+Version.java
+file
+
+
+
+
+2012-10-25T01:32:25.165261Z
+90b6ddf02c8be9f2700d4716f5f72492
+2012-01-04T14:47:11.280405Z
+1227174
+srowen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1388
+
+cf
+dir
+
+common
+dir
+
+math
+dir
+
+driver
+dir
+
+vectorizer
+dir
+
+clustering
+dir
+

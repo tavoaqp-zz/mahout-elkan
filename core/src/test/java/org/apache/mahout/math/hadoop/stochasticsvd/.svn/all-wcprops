@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/stochasticsvd
+END
+SSVDTestsHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1292532/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/stochasticsvd/SSVDTestsHelper.java
+END
+LocalSSVDSolverDenseTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1292532/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/stochasticsvd/LocalSSVDSolverDenseTest.java
+END
+UpperTriangularTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/stochasticsvd/UpperTriangularTest.java
+END
+SSVDCommonTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1292532/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/stochasticsvd/SSVDCommonTest.java
+END
+LocalSSVDPCADenseTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/stochasticsvd/LocalSSVDPCADenseTest.java
+END
+LocalSSVDSolverSparseSequentialTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/stochasticsvd/LocalSSVDSolverSparseSequentialTest.java
+END

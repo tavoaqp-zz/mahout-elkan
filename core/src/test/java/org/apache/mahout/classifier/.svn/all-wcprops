@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/asf/!svn/ver/1394439/mahout/trunk/core/src/test/java/org/apache/mahout/classifier
+END
+RegressionResultAnalyzerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1394439/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/RegressionResultAnalyzerTest.java
+END
+ConfusionMatrixTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1178324/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/ConfusionMatrixTest.java
+END
+ClassifierData.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/ClassifierData.java
+END

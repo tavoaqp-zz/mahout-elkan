@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random
+END
+Empirical.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/Empirical.java
+END
+ChineseRestaurant.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/ChineseRestaurant.java
+END
+Normal.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/Normal.java
+END
+Missing.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/Missing.java
+END
+Multinomial.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/Multinomial.java
+END
+WeightedThing.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/WeightedThing.java
+END
+AbstractSamplerFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1380428/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/AbstractSamplerFunction.java
+END
+IndianBuffet.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/IndianBuffet.java
+END
+PoissonSampler.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1394439/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/PoissonSampler.java
+END
+SyntheticVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1380428/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/SyntheticVariable.java
+END
+MultiNormal.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1380428/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/MultiNormal.java
+END
+Sampler.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1380428/mahout/trunk/math/src/main/java/org/apache/mahout/math/random/Sampler.java
+END

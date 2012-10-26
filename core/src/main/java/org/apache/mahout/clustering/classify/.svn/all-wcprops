@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1395511/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/classify
+END
+ClusterClassifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1336424/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/classify/ClusterClassifier.java
+END
+ClusterClassificationDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/classify/ClusterClassificationDriver.java
+END
+WeightedVectorWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1293712/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/classify/WeightedVectorWritable.java
+END
+ClusterClassificationConfigKeys.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/classify/ClusterClassificationConfigKeys.java
+END
+ClusterClassificationMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1395511/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/classify/ClusterClassificationMapper.java
+END
+WeightedPropertyVectorWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/classify/WeightedPropertyVectorWritable.java
+END

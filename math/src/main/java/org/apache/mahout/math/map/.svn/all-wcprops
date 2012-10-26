@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/asf/!svn/ver/1396948/mahout/trunk/math/src/main/java/org/apache/mahout/math/map
+END
+OpenHashMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1396948/mahout/trunk/math/src/main/java/org/apache/mahout/math/map/OpenHashMap.java
+END
+PrimeFinder.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1352052/mahout/trunk/math/src/main/java/org/apache/mahout/math/map/PrimeFinder.java
+END
+QuickOpenIntIntHashMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1339121/mahout/trunk/math/src/main/java/org/apache/mahout/math/map/QuickOpenIntIntHashMap.java
+END
+HashFunctions.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1339121/mahout/trunk/math/src/main/java/org/apache/mahout/math/map/HashFunctions.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1339121/mahout/trunk/math/src/main/java/org/apache/mahout/math/map/package.html
+END

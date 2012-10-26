@@ -1,0 +1,83 @@
+10
+
+dir
+1401943
+http://svn.apache.org/repos/asf/mahout/trunk/core/src/test/java/org/apache/mahout/cf/taste/impl
+http://svn.apache.org/repos/asf
+
+
+
+2012-10-12T09:11:02.211235Z
+1397481
+srowen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13f79535-47bb-0310-9956-ffa450edef68
+
+TasteTestCase.java
+file
+
+
+
+
+2012-10-25T01:32:11.325136Z
+fd1be9e2f930ad34b32e7d017bfff0cf
+2012-07-14T18:59:15.788069Z
+1361573
+srowen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3647
+
+transforms
+dir
+
+model
+dir
+
+recommender
+dir
+
+similarity
+dir
+
+eval
+dir
+
+neighborhood
+dir
+
+common
+dir
+

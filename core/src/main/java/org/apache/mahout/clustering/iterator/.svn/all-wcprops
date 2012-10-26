@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1391752/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator
+END
+CIReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1391752/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/CIReducer.java
+END
+FuzzyKMeansClusteringPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/FuzzyKMeansClusteringPolicy.java
+END
+DirichletClusteringPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/DirichletClusteringPolicy.java
+END
+CanopyClusteringPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/CanopyClusteringPolicy.java
+END
+ClusteringPolicyWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1293712/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/ClusteringPolicyWritable.java
+END
+ClusterIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/ClusterIterator.java
+END
+ClusterWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1391752/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/ClusterWritable.java
+END
+DistanceMeasureCluster.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1293712/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/DistanceMeasureCluster.java
+END
+KMeansClusteringPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/KMeansClusteringPolicy.java
+END
+MeanShiftClusteringPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/MeanShiftClusteringPolicy.java
+END
+ClusteringPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/ClusteringPolicy.java
+END
+CIMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1352052/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/CIMapper.java
+END
+AbstractClusteringPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1298625/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/iterator/AbstractClusteringPolicy.java
+END
