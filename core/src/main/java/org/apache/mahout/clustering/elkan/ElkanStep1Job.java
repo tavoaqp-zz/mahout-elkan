@@ -1,6 +1,7 @@
 package org.apache.mahout.clustering.elkan;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
@@ -21,9 +22,13 @@ import org.apache.mahout.clustering.iterator.ClusteringPolicy;
 import org.apache.mahout.clustering.kmeans.KMeansConfigKeys;
 import org.apache.mahout.common.ClassUtils;
 import org.apache.mahout.common.distance.DistanceMeasure;
+import org.apache.mahout.math.DenseMatrix;
 import org.apache.mahout.math.DenseVector;
+import org.apache.mahout.math.MatrixSlice;
 import org.apache.mahout.math.SequentialAccessSparseVector;
 import org.apache.mahout.math.Vector;
+import org.apache.mahout.math.hadoop.DistributedRowMatrix;
+import org.apache.mahout.math.map.OpenHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,6 +78,8 @@ public class ElkanStep1Job {
 		private Vector medianDistanceClusters;
 		
 		private DistanceMeasure measure;
+		
+		private OpenHashMap<Integer,Vector> clusterDistanceMatrix;
 
 		@Override
 		protected void setup(Context context) throws IOException,
@@ -105,6 +112,19 @@ public class ElkanStep1Job {
 				medianDistanceClusters.setQuick(i, sCenter);
 				i++;
 			}
+			
+			clusterDistanceMatrix=new OpenHashMap<Integer, Vector>(models.size());			
+			Path clusterDistanceMatrixPath=new Path(conf.get(ElkanIterator.CENTROID_DISTANCES_PATH_KEY));
+			Path clusterDistanceMatrixOutput=new Path(conf.get(ElkanIterator.CENTROID_DISTANCES_PATH_KEY)+"/output");
+			DistributedRowMatrix rowMatrix=new DistributedRowMatrix(clusterDistanceMatrixPath,clusterDistanceMatrixOutput,
+					models.size(),models.size());
+			rowMatrix.setConf(conf);
+			Iterator<MatrixSlice> it=rowMatrix.iterator();
+			while (it.hasNext())
+			{
+				MatrixSlice slice=it.next();
+				clusterDistanceMatrix.put(slice.index(),slice.vector());
+			}
 			super.setup(context);
 		}
 
@@ -112,7 +132,6 @@ public class ElkanStep1Job {
 		protected void map(WritableComparable<?> key, ElkanVectorWritable value,
 				Context context) throws IOException, InterruptedException {
 			ElkanVector originVector = value.get();
-			originVector.getClusterId();
 			
 			List<Cluster> models=classifier.getModels();
 			if (originVector.getUpperLimit()>medianDistanceClusters.get(originVector.getClusterId()))
@@ -120,12 +139,14 @@ public class ElkanStep1Job {
 				int i=0;
 				for(Cluster model:models)
 				{
-					if (i!=originVector.getClusterId())
+					Integer originClusterId=Integer.valueOf(originVector.getClusterId());
+					if (i!=originClusterId)
 					{
 						double lowerLimit=originVector.getLowerLimits().get(i);
 						double upperLimit=originVector.getUpperLimit();
-						Vector clusterVector=models.get(originVector.getClusterId()).getCenter();						
-						double clusterDistance=measure.distance(model.getCenter(), clusterVector);
+						Vector clusterVector=models.get(originVector.getClusterId()).getCenter();
+						double clusterDistance=clusterDistanceMatrix.get(Integer.valueOf(i)).getQuick(originClusterId);
+						
 						double curDist=0;
 						if (upperLimit>lowerLimit && upperLimit>clusterDistance/2)
 						{

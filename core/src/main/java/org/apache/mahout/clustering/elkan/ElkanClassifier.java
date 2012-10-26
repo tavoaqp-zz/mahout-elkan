@@ -15,6 +15,7 @@ import com.google.common.collect.Lists;
 
 public class ElkanClassifier extends ClusterClassifier{
 	
+	public static final String CLUSTER_DISTANCES_DIR = "elkanClusterDistances";
 	public static String ELKAN_VECTORS_DIR="elkanVectors-";
 	public static String ELKAN_STEP_1="step-1";
 	public static String ELKAN_STEP_2="step-2";

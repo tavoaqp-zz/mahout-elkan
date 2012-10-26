@@ -90,6 +90,7 @@ public class ElkanVectorsCreateJob {
 			for (Cluster model:classifier.getModels())
 			{
 				probabilities.setQuick(i, measure.distance(originVector, model.getCenter()));
+				i++;
 			}
 			
 			ElkanVector elkanVector=new ElkanVector();

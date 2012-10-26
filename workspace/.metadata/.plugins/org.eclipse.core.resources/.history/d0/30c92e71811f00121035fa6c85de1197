@@ -1,0 +1,40 @@
+package org.apache.mahout.clustering.elkan;
+
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.mahout.common.Pair;
+import org.apache.mahout.common.iterator.sequencefile.PathFilters;
+import org.apache.mahout.common.iterator.sequencefile.PathType;
+import org.apache.mahout.common.iterator.sequencefile.SequenceFileDirIterator;
+import org.apache.mahout.math.MatrixSlice;
+import org.apache.mahout.math.Vector;
+import org.apache.mahout.math.VectorWritable;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterators;
+
+public class CentroidDistanceMatrix {
+	
+	private Path path;
+	
+	public Vector getRow(int index, Configuration conf)
+	{
+		Vector row=null;
+		try {
+			Iterator<VectorWritable> it=Iterators.unmodifiableIterator(
+			          new SequenceFileDirIterator<Text,VectorWritable>(new Path(path, ""+index),
+			                                                                  PathType.GLOB,
+			                                                                  PathFilters.logsCRCFilter(),
+			                                                                  null,
+			                                                                  true,
+			                                                                  conf));
+		} catch (IOException e) {
+		}	
+		return row;
+	}
+
+}

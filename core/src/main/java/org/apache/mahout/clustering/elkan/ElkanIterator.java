@@ -21,6 +21,7 @@ import com.google.common.io.Closeables;
 
 public class ElkanIterator {
 	public static final String NEW_PRIOR_PATH_KEY = "org.apache.mahout.clustering.prior.path_new";
+	public static final String CENTROID_DISTANCES_PATH_KEY = "org.apache.mahout.clustering.centroid.distances.path_new";
 	private static final Logger log = LoggerFactory
 			.getLogger(ElkanDriver.class);
 	/**
@@ -49,11 +50,16 @@ public class ElkanIterator {
 		Path localInPath=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_1+iteration);
 		int vectors_created=ElkanVectorsCreateJob.run(inPath, localInPath, conf);
 		while (vectors_created==0 && iteration <= numIterations) {
-			conf.set(PRIOR_PATH_KEY, priorPath.toString());			
-			log.info("Elkan Clustering Step 1");
+			log.info("Working on Iteration "+iteration);
+			conf.set(PRIOR_PATH_KEY, priorPath.toString());
+			log.info("Iteration "+iteration+" - Creating Cluster Distances Matrix");
+			Path distanceMatrixPath=new Path(outPath,ElkanClassifier.CLUSTER_DISTANCES_DIR+iteration);			
+			conf.set(CENTROID_DISTANCES_PATH_KEY, distanceMatrixPath.toString());
+			ElkanClusterDistanceStepJob.run(priorPath, distanceMatrixPath, conf);
+			log.info("Iteration "+iteration+" - Elkan Clustering Step 1");
 			Path output2=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_2+iteration);
 			ElkanStep1Job.run(localInPath, output2, conf);
-			log.info("Elkan Clustering Step 2");
+			log.info("Iteration "+iteration+" - Elkan Clustering Step 2");
 			clustersOut = new Path(outPath, Cluster.CLUSTERS_DIR + (iteration+1));
 			ElkanStep2Job.run(output2, clustersOut, conf);
 			ClusterClassifier.writePolicy(policy, clustersOut);
@@ -64,7 +70,7 @@ public class ElkanIterator {
 			}
 			else
 			{
-				log.info("Elkan Clustering Step 3");
+				log.info("Iteration "+iteration+" - Elkan Clustering Step 3");
 				conf.set(NEW_PRIOR_PATH_KEY, clustersOut.toString());			
 				localInPath=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_3+(iteration+1));
 				ElkanStep3Job.run(output2, localInPath, conf);

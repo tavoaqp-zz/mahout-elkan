@@ -1,0 +1,7 @@
+package org.apache.mahout.clustering.elkan;
+
+public class CentroidDistanceMatrix {
+	
+	private Path path;
+
+}

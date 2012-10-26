@@ -1,0 +1,111 @@
+package org.apache.mahout.clustering.elkan;
+
+import static org.apache.mahout.clustering.iterator.ClusterIterator.PRIOR_PATH_KEY;
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.classify.ClusterClassifier;
+import org.apache.mahout.clustering.iterator.ClusterWritable;
+import org.apache.mahout.clustering.iterator.ClusteringPolicy;
+import org.apache.mahout.common.iterator.sequencefile.PathFilters;
+import org.apache.mahout.common.iterator.sequencefile.SequenceFileValueIterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.io.Closeables;
+
+public class ElkanIterator {
+	public static final String NEW_PRIOR_PATH_KEY = "org.apache.mahout.clustering.prior.path_new";
+	public static final String CENTROID_DISTANCES_PATH_KEY = "org.apache.mahout.clustering.centroid.distances.path_new";
+	private static final Logger log = LoggerFactory
+			.getLogger(ElkanDriver.class);
+	/**
+	 * Iterate over data using a prior-trained ClusterClassifier, for a number
+	 * of iterations using a mapreduce implementation
+	 * 
+	 * @param conf
+	 *            the Configuration
+	 * @param inPath
+	 *            a Path to input VectorWritables
+	 * @param priorPath
+	 *            a Path to the prior classifier
+	 * @param outPath
+	 *            a Path of output directory
+	 * @param numIterations
+	 *            the int number of iterations to perform
+	 */
+	public void iterateMR(Configuration conf, Path inPath, Path priorPath,
+			Path outPath, int numIterations) throws IOException,
+			InterruptedException, ClassNotFoundException {
+		ClusteringPolicy policy = ClusterClassifier.readPolicy(priorPath);
+		Path clustersOut = null;
+		int iteration = 1;
+		log.info("Creating Elkan Vectors");
+		conf.set(PRIOR_PATH_KEY, priorPath.toString());
+		Path localInPath=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_1+iteration);
+		int vectors_created=ElkanVectorsCreateJob.run(inPath, localInPath, conf);
+		while (vectors_created==0 && iteration <= numIterations) {
+			conf.set(PRIOR_PATH_KEY, priorPath.toString());
+			Path distanceMatrixPath=new Path(outPath,ElkanClassifier.CLUSTER_DISTANCES_DIR+iteration);
+			
+			log.info("Elkan Clustering Step 1");
+			Path output2=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_2+iteration);
+			ElkanStep1Job.run(localInPath, output2, conf);
+			log.info("Elkan Clustering Step 2");
+			clustersOut = new Path(outPath, Cluster.CLUSTERS_DIR + (iteration+1));
+			ElkanStep2Job.run(output2, clustersOut, conf);
+			ClusterClassifier.writePolicy(policy, clustersOut);
+			FileSystem fs = FileSystem.get(outPath.toUri(), conf);
+			if (isConverged(clustersOut, conf, fs)) {
+				log.info("Elkan Clustering converged");
+				break;
+			}
+			else
+			{
+				log.info("Elkan Clustering Step 3");
+				conf.set(NEW_PRIOR_PATH_KEY, clustersOut.toString());			
+				localInPath=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_3+(iteration+1));
+				ElkanStep3Job.run(output2, localInPath, conf);
+			}
+			
+			iteration++;
+			priorPath = clustersOut;			
+		}
+		Path finalClustersIn = new Path(outPath, Cluster.CLUSTERS_DIR
+				+ (iteration - 1) + Cluster.FINAL_ITERATION_SUFFIX);
+		FileSystem.get(clustersOut.toUri(), conf).rename(clustersOut,
+				finalClustersIn);
+	}
+
+	/**
+	 * Return if all of the Clusters in the parts in the filePath have converged
+	 * or not
+	 * 
+	 * @param filePath
+	 *            the file path to the single file containing the clusters
+	 * @return true if all Clusters are converged
+	 * @throws IOException
+	 *             if there was an IO error
+	 */
+	private boolean isConverged(Path filePath, Configuration conf, FileSystem fs)
+			throws IOException {
+		for (FileStatus part : fs
+				.listStatus(filePath, PathFilters.partFilter())) {
+			SequenceFileValueIterator<ClusterWritable> iterator = new SequenceFileValueIterator<ClusterWritable>(
+					part.getPath(), true, conf);			
+			while (iterator.hasNext()) {
+				ClusterWritable value = iterator.next();
+				if (!value.getValue().isConverged()) {
+					Closeables.closeQuietly(iterator);
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+}
