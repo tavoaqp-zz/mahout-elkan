@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="28" version="2.0">
+<workbench progressCount="26" version="2.0">
 <workbenchAdvisor/>
-<window height="768" width="1024" x="0" y="26">
+<window height="768" maximized="true" width="1024" x="0" y="26">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -13,9 +13,12 @@
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="106" y="24"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="66" y="24"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="90" y="24"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="130" y="24"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="162" y="24"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -24,18 +27,118 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="6"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
+<part id="16"/>
+<part id="17"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanStep1Job.java" partName="ElkanStep1Job.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanStep1Job.java" title="ElkanStep1Job.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanStep1Job.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanStep1Job.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6117" selectionTopPixel="2150"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanIterator.java" partName="ElkanIterator.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanIterator.java" title="ElkanIterator.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanIterator.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanIterator.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3148" selectionTopPixel="172"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanVector.java" partName="ElkanVector.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVector.java" title="ElkanVector.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVector.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVector.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="867" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PathFilters.java" partName="PathFilters.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/common/iterator/sequencefile/PathFilters.java" title="PathFilters.java" tooltip="mahout-core/src/main/java/org/apache/mahout/common/iterator/sequencefile/PathFilters.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/common/iterator/sequencefile/PathFilters.java"/>
+<editorState selectionHorizontalPixel="179" selectionLength="20" selectionOffset="2131" selectionTopPixel="383"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="PathFilter.class" partName="PathFilter.class" title="PathFilter.class" tooltip="org.apache.hadoop.fs.PathFilter" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=mahout-core/\/home\/gustavo\/.m2\/repository\/org\/apache\/hadoop\/hadoop-common\/0.23.4\/hadoop-common-0.23.4.jar&lt;org.apache.hadoop.fs(PathFilter.class"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanVectorFilter.java" partName="ElkanVectorFilter.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/common/iterator/sequencefile/ElkanVectorFilter.java" title="ElkanVectorFilter.java" tooltip="mahout-core/src/main/java/org/apache/mahout/common/iterator/sequencefile/ElkanVectorFilter.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/common/iterator/sequencefile/ElkanVectorFilter.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="259" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ClusterIterator.java" partName="ClusterIterator.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/iterator/ClusterIterator.java" title="ClusterIterator.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/iterator/ClusterIterator.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/iterator/ClusterIterator.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7471" selectionTopPixel="2278"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="Closeables.class" partName="Closeables.class" title="Closeables.class" tooltip="com.google.common.io.Closeables" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=mahout-core/\/home\/gustavo\/.m2\/repository\/com\/google\/guava\/guava\/12.0\/guava-12.0.jar&lt;com.google.common.io(Closeables.class"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanClassifier.java" partName="ElkanClassifier.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClassifier.java" title="ElkanClassifier.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClassifier.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClassifier.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1515" selectionTopPixel="239"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanVectorUpdateMapper.java" partName="ElkanVectorUpdateMapper.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorUpdateMapper.java" title="ElkanVectorUpdateMapper.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorUpdateMapper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorUpdateMapper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="815" selectionTopPixel="270"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanVectorOneTimeMapper.java" partName="ElkanVectorOneTimeMapper.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorOneTimeMapper.java" title="ElkanVectorOneTimeMapper.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorOneTimeMapper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorOneTimeMapper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="19" selectionOffset="1482" selectionTopPixel="504"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanMapper.java" partName="ElkanMapper.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanMapper.java" title="ElkanMapper.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanMapper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanMapper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2730" selectionTopPixel="607"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanSteps.java" partName="ElkanSteps.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanSteps.java" title="ElkanSteps.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanSteps.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanSteps.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="80" selectionOffset="1115" selectionTopPixel="182"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanReducer.java" partName="ElkanReducer.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanReducer.java" title="ElkanReducer.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanReducer.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanReducer.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="628" selectionTopPixel="200"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CIReducer.java" partName="CIReducer.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/iterator/CIReducer.java" title="CIReducer.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/iterator/CIReducer.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/iterator/CIReducer.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="9" selectionOffset="1245" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanClusterDistanceStepJob.java" partName="ElkanClusterDistanceStepJob.java" path="/home/gustavo/git/ep2-last/core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClusterDistanceStepJob.java" title="ElkanClusterDistanceStepJob.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClusterDistanceStepJob.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClusterDistanceStepJob.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="191" selectionOffset="3499" selectionTopPixel="1013"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractMatrix.java" partName="AbstractMatrix.java" path="/home/gustavo/git/ep2-last/math/src/main/java/org/apache/mahout/math/AbstractMatrix.java" title="AbstractMatrix.java" tooltip="mahout-math/src/main/java/org/apache/mahout/math/AbstractMatrix.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-math/src/main/java/org/apache/mahout/math/AbstractMatrix.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="14" selectionOffset="1334" selectionTopPixel="108"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DenseMatrix.java" partName="DenseMatrix.java" path="/home/gustavo/git/ep2-last/math/src/main/java/org/apache/mahout/math/DenseMatrix.java" title="DenseMatrix.java" tooltip="mahout-math/src/main/java/org/apache/mahout/math/DenseMatrix.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mahout-math/src/main/java/org/apache/mahout/math/DenseMatrix.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="931" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
+<view id="org.eclipse.jdt.ui.TypeHierarchy" partName="Type Hierarchy">
+<viewState hidefields="false" hidelocaltypes="false" hidenonpublic="false" hidestatic="false" input="=mahout-math/src\/main\/java&lt;org.apache.mahout.math{AbstractMatrix.java[AbstractMatrix" link_editors="0" mv_vertical_scroll="0" orientation="3" qualified_names="0" ratio="350" selection="=mahout-math/src\/main\/java&lt;org.apache.mahout.math{DenseMatrix.java[DenseMatrix" showinherited="false" sortbydefiningtype="false" vertical_scroll="18" view="2" workingSetName="Aggregate for window 1351256345613"/>
+</view>
+<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
+<viewState isPinned="false">
+<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.limit="1000" org.eclipse.search.resultpage.sorting="2"/>
+</viewState>
+</view>
+<view id="org.eclipse.jdt.callhierarchy.view" partName="Call Hierarchy">
+<viewState search_scope_type="1"/>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Errors (34 items)"/>
-</expanded>
-<columnWidths org.eclipse.ui.ide.locationField="120" org.eclipse.ui.ide.markerType="120" org.eclipse.ui.ide.pathField="160" org.eclipse.ui.ide.resourceField="120" org.eclipse.ui.ide.severityAndDescriptionField="400"/>
+<columnWidths org.eclipse.ui.ide.locationField="120" org.eclipse.ui.ide.markerType="120" org.eclipse.ui.ide.pathField="160" org.eclipse.ui.ide.resourceField="120" org.eclipse.ui.ide.severityAndDescriptionField="670"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -73,30 +176,10 @@
 </customFilters>
 </viewState>
 </view>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks" partName="Task List">
-<viewState linkWithEditor="true" presentation="org.eclipse.mylyn.tasks.ui.categorized">
-<sorter groupBy="CATEGORY_QUERY">
-<sorter>
-<sort0 sortDirection="1" sortKey="PRIORITY"/>
-<sort1 sortDirection="1" sortKey="RANK"/>
-<sort2 sortDirection="1" sortKey="DATE_CREATED"/>
-<sort3 sortDirection="1" sortKey="NONE"/>
-<sort4 sortDirection="1" sortKey="NONE"/>
-<sort5 sortDirection="1" sortKey="NONE"/>
-<sort6 sortDirection="1" sortKey="NONE"/>
-<sort7 sortDirection="1" sortKey="NONE"/>
-</sorter>
-</sorter>
-<filteredTreeFindHistory/>
-</viewState>
-</view>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
-<viewState/>
-</view>
 <view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
@@ -152,23 +235,30 @@
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer"/>
-<view id="org.eclipse.ui.views.ProblemView"/>
-<view id="org.eclipse.jdt.ui.JavadocView"/>
-<view id="org.eclipse.jdt.ui.SourceView"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
-<fastViewBars/>
+<view id="org.eclipse.jdt.ui.TypeHierarchy"/>
+<fastViewBars>
+<fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="org.eclipse.search.ui.views.SearchView" style="0">
+<fastViews>
+<view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
+<view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
+<view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
+<view id="org.eclipse.jdt.callhierarchy.view" ratio="0.3"/>
+<view id="org.eclipse.search.ui.views.SearchView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+</fastViewBars>
 <layout>
 <mainWindow>
 <info folder="true" part="left">
 <folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
-<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="Type Hierarchy"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.ui.navigator.ProjectExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.junit.ResultView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -180,39 +270,32 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.24950495" ratioLeft="252" ratioRight="758" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.75" ratioLeft="486" ratioRight="162" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
-<page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
-<page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
+<info part="org.eclipse.ui.editorss" ratio="0.24192278" ratioLeft="307" ratioRight="962" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.49157733" ratioLeft="321" ratioRight="332" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="0">
+<page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.JavadocView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.SourceView" label="LabelNotFound"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-</presentation>
+<page content="org.eclipse.jdt.callhierarchy.view" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@43036651" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.mylyn.tasks.ui.views.tasks" appearance="2" expanded="2">
-<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="right" ratio="0.5" ratioLeft="243" ratioRight="243" relationship="4" relative="org.eclipse.ui.internal.ViewStack@43036651">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.egit.ui.RepositoriesView" ratio="0.59876543" ratioLeft="388" ratioRight="260" relationship="4" relative="left"/>
@@ -221,7 +304,168 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorUpdateMapper.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorOneTimeMapper.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClassifier.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanIterator.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/common/iterator/sequencefile/ElkanVectorFilter.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/common/iterator/sequencefile/PathFilters.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanReducer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/mahout-core/src/main/java/org/apache/mahout/clustering/iterator/CIReducer.java"/>
+</editors>
+<item historyLabel="ElkanVectorOneTimeMapper.java" index="1">
+<position info="not_deleted" x="1381" y="77"/>
+</item>
+<item historyLabel="ElkanVectorUpdateMapper.java" index="0">
+<position info="not_deleted" x="1852" y="0"/>
+</item>
+<item historyLabel="ElkanVectorOneTimeMapper.java" index="1">
+<position info="not_deleted" x="1381" y="77"/>
+</item>
+<item historyLabel="ElkanVectorOneTimeMapper.java" index="1">
+<position info="not_deleted" x="709" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="299" y="17"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="364" y="19"/>
+</item>
+<item historyLabel="ElkanIterator.java" index="3">
+<position info="not_deleted" x="3741" y="19"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="364" y="19"/>
+</item>
+<item historyLabel="ElkanIterator.java" index="3">
+<position info="not_deleted" x="3760" y="0"/>
+</item>
+<item historyLabel="ElkanIterator.java" index="3">
+<position info="not_deleted" x="5704" y="0"/>
+</item>
+<item historyLabel="ElkanVectorOneTimeMapper.java" index="1">
+<position info="not_deleted" x="1501" y="0"/>
+</item>
+<item historyLabel="ElkanVectorUpdateMapper.java" index="0">
+<position info="not_deleted" x="1894" y="0"/>
+</item>
+<item historyLabel="ElkanVectorUpdateMapper.java" index="0">
+<position info="not_deleted" x="1762" y="0"/>
+</item>
+<item historyLabel="ElkanVectorOneTimeMapper.java" index="1">
+<position info="not_deleted" x="1482" y="19"/>
+</item>
+<item historyLabel="ElkanVectorUpdateMapper.java" index="0">
+<position info="not_deleted" x="1876" y="37"/>
+</item>
+<item historyLabel="ElkanIterator.java" index="3">
+<position info="not_deleted" x="5704" y="0"/>
+</item>
+<item historyLabel="ElkanClassifier.java" index="2">
+<position info="not_deleted" x="1515" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="3259" y="17"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2961" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2236" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="539" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="3454" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="598" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="3454" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="3303" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2083" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="598" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2080" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="598" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2887" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="598" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2080" y="23"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="698" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2107" y="20"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="653" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2107" y="20"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="653" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2153" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="653" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2131" y="20"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="678" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2131" y="20"/>
+</item>
+<item historyLabel="ElkanIterator.java" index="3">
+<position info="not_deleted" x="3299" y="0"/>
+</item>
+<item historyLabel="ElkanReducer.java" index="6">
+<position info="not_deleted" x="628" y="0"/>
+</item>
+<item historyLabel="CIReducer.java" index="7">
+<position info="not_deleted" x="1245" y="9"/>
+</item>
+<item historyLabel="ElkanReducer.java" index="6">
+<position info="not_deleted" x="628" y="0"/>
+</item>
+<item historyLabel="ElkanVectorFilter.java" index="4">
+<position info="not_deleted" x="259" y="0"/>
+</item>
+<item historyLabel="PathFilters.java" index="5">
+<position info="not_deleted" x="2131" y="20"/>
+</item>
+<item historyLabel="ElkanIterator.java" index="3">
+<position info="not_deleted" x="3148" y="0"/>
+</item>
+<item active="true" historyLabel="ElkanVectorUpdateMapper.java" index="0">
+<position info="not_deleted" x="494" y="23"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -235,8 +479,55 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
-<mruList/>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DenseMatrix.java" tooltip="mahout-math/src/main/java/org/apache/mahout/math/DenseMatrix.java">
+<persistable path="/mahout-math/src/main/java/org/apache/mahout/math/DenseMatrix.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractMatrix.java" tooltip="mahout-math/src/main/java/org/apache/mahout/math/AbstractMatrix.java">
+<persistable path="/mahout-math/src/main/java/org/apache/mahout/math/AbstractMatrix.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanClusterDistanceStepJob.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClusterDistanceStepJob.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClusterDistanceStepJob.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CIReducer.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/iterator/CIReducer.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/iterator/CIReducer.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanReducer.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanReducer.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanReducer.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Mapper.class" tooltip="org.apache.hadoop.mapreduce.Mapper">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=mahout-core/\/home\/gustavo\/.m2\/repository\/org\/apache\/hadoop\/hadoop-mapreduce-client-core\/0.23.4\/hadoop-mapreduce-client-core-0.23.4.jar&lt;org.apache.hadoop.mapreduce(Mapper.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanSteps.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanSteps.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanSteps.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanStep2Job.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanStep2Job.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanStep2Job.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanMapper.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanMapper.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanMapper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanVectorOneTimeMapper.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorOneTimeMapper.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorOneTimeMapper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanVectorUpdateMapper.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorUpdateMapper.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanVectorUpdateMapper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DistributedRowMatrix.java" tooltip="mahout-core/src/main/java/org/apache/mahout/math/hadoop/DistributedRowMatrix.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/math/hadoop/DistributedRowMatrix.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanClassifier.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClassifier.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanClassifier.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CIMapper.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/iterator/CIMapper.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/iterator/CIMapper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ElkanKMeansJob.java" tooltip="mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanKMeansJob.java">
+<persistable path="/mahout-core/src/main/java/org/apache/mahout/clustering/elkan/ElkanKMeansJob.java"/>
+</file>
+</mruList>
 </workbench>

@@ -51,6 +51,15 @@ public final class PathFilters {
       return !(name.endsWith(".crc") || name.startsWith(".") || name.startsWith("_"));
     }
   };
+  
+  private static final PathFilter LOGS_CRC_AND_PARTS_INSTANCE = new PathFilter() {
+	    @Override
+	    public boolean accept(Path path) {
+	      String name = path.getName();
+	      return name.startsWith("part-") && !(name.endsWith(".crc") || name.startsWith(".") || name.startsWith("_"));
+	    }
+	  };
+  private static final PathFilter ELKAN_VECTORS_INSTANCE = new ElkanVectorFilter();
 
   private PathFilters() {
   }
@@ -76,6 +85,21 @@ public final class PathFilters {
    */
   public static PathFilter logsCRCFilter() {
     return LOGS_CRC_INSTANCE;
+  }
+  
+  /**
+   * @return {@link PathFilter} that accepts paths whose file name starts with "part-" and rejects paths whose file name starts with "_" (e.g. Cloudera
+   * _SUCCESS files or Hadoop _logs), or "." (e.g. local hidden files), or ends with ".crc"
+   */
+  public static PathFilter logsPartCRCFilter() {
+    return LOGS_CRC_AND_PARTS_INSTANCE;
+  }
+  
+  /**
+   * @return {@link PathFilter} that accepts paths whose file name contains with "elkanVectors" or doesn't contain "part","_policy", "_SUCCESS" or ".crc"
+   */
+  public static PathFilter elkanVectorsFilter() {
+    return ELKAN_VECTORS_INSTANCE;
   }
 
 }

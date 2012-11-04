@@ -1,0 +1,15 @@
+package org.apache.mahout.common.iterator.sequencefile;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.PathFilter;
+
+public class ElkanVectorFilter implements PathFilter
+{
+
+	@Override
+    public boolean accept(Path path) {
+      String name = path.getName();
+      return name.startsWith("elkanvectors");
+    }
+	
+}

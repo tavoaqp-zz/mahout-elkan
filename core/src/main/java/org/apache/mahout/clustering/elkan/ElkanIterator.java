@@ -3,17 +3,44 @@ package org.apache.mahout.clustering.elkan;
 import static org.apache.mahout.clustering.iterator.ClusterIterator.PRIOR_PATH_KEY;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.PathFilter;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.WritableComparable;
+import org.apache.hadoop.mapred.JobConf;
+import org.apache.hadoop.mapred.lib.MultipleOutputFormat;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
+import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.mahout.clustering.Cluster;
 import org.apache.mahout.clustering.classify.ClusterClassifier;
+import org.apache.mahout.clustering.elkan.ElkanClusterDistanceStepJob.ElkanClusterDistanceMapper;
+import org.apache.mahout.clustering.iterator.CIReducer;
+import org.apache.mahout.clustering.iterator.ClusterIterator;
 import org.apache.mahout.clustering.iterator.ClusterWritable;
 import org.apache.mahout.clustering.iterator.ClusteringPolicy;
+import org.apache.mahout.common.distance.DistanceMeasure;
+import org.apache.mahout.common.iterator.sequencefile.ElkanVectorFilter;
 import org.apache.mahout.common.iterator.sequencefile.PathFilters;
 import org.apache.mahout.common.iterator.sequencefile.SequenceFileValueIterator;
+import org.apache.mahout.math.Vector;
+import org.apache.mahout.math.VectorWritable;
+import org.apache.mahout.math.Vector.Element;
+import org.apache.mahout.math.map.OpenHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,10 +49,12 @@ import com.google.common.io.Closeables;
 public class ElkanIterator {
 	public static final String NEW_PRIOR_PATH_KEY = "org.apache.mahout.clustering.prior.path_new";
 	public static final String CENTROID_DISTANCES_PATH_KEY = "org.apache.mahout.clustering.centroid.distances.path_new";
+	public static final String ITERATION_KEY = "org.apache.mahout.clustering.iteration";
 	private static final Logger log = LoggerFactory
-			.getLogger(ElkanDriver.class);
+			.getLogger(ElkanIterator.class);
+
 	/**
-	 * Iterate over data using a prior-trained ClusterClassifier, for a number
+	 * Iterate over data using a prior-trained ElkanClassifier, for a number
 	 * of iterations using a mapreduce implementation
 	 * 
 	 * @param conf
@@ -45,44 +74,54 @@ public class ElkanIterator {
 		ClusteringPolicy policy = ClusterClassifier.readPolicy(priorPath);
 		Path clustersOut = null;
 		int iteration = 1;
-		log.info("Creating Elkan Vectors");
-		conf.set(PRIOR_PATH_KEY, priorPath.toString());
-		Path localInPath=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_1+iteration);
-		int vectors_created=ElkanVectorsCreateJob.run(inPath, localInPath, conf);
-		while (vectors_created==0 && iteration <= numIterations) {
-			log.info("Working on Iteration "+iteration);
+		while (iteration <= numIterations) {
 			conf.set(PRIOR_PATH_KEY, priorPath.toString());
-			log.info("Iteration "+iteration+" - Creating Cluster Distances Matrix");
-			Path distanceMatrixPath=new Path(outPath,ElkanClassifier.CLUSTER_DISTANCES_DIR+iteration);			
-			conf.set(CENTROID_DISTANCES_PATH_KEY, distanceMatrixPath.toString());
-			ElkanClusterDistanceStepJob.run(priorPath, distanceMatrixPath, conf);
-			log.info("Iteration "+iteration+" - Elkan Clustering Step 1");
-			Path output2=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_2+iteration);
-			ElkanStep1Job.run(localInPath, output2, conf);
-			log.info("Iteration "+iteration+" - Elkan Clustering Step 2");
-			clustersOut = new Path(outPath, Cluster.CLUSTERS_DIR + (iteration+1));
-			ElkanStep2Job.run(output2, clustersOut, conf);
+			
+			Job job = new Job(conf, "Elkan Kmeans job.");
+
+			if (iteration == 1)
+				job.setMapperClass(ElkanVectorOneTimeMapper.class);
+			else
+				job.setMapperClass(ElkanVectorUpdateMapper.class);
+			job.setMapOutputKeyClass(IntWritable.class);
+			job.setMapOutputValueClass(ClusterWritable.class);
+
+			job.setReducerClass(ElkanReducer.class);
+			job.setOutputKeyClass(IntWritable.class);
+			job.setOutputValueClass(ClusterWritable.class);
+
+			job.setInputFormatClass(SequenceFileInputFormat.class);
+			job.setOutputFormatClass(SequenceFileOutputFormat.class);
+
+			clustersOut = new Path(outPath, Cluster.CLUSTERS_DIR + iteration);
+			priorPath = clustersOut;
+			FileOutputFormat.setOutputPath(job, clustersOut);
+			MultipleOutputs.addNamedOutput(job, ElkanVectorFilter.ELKAN_VECTOR_PREFIX,
+					SequenceFileOutputFormat.class, Text.class,
+					ElkanVectorWritable.class);			
+			
+			FileInputFormat.addInputPath(job, inPath);
+			if (iteration>1)
+				FileInputFormat.setInputPathFilter(job, ElkanVectorFilter.class);
+			
+			job.setJarByClass(ElkanIterator.class);
+
+			if (!job.waitForCompletion(true)) {
+				throw new InterruptedException("Cluster Iteration " + iteration
+						+ " failed processing " + priorPath);
+			}
+			
 			ClusterClassifier.writePolicy(policy, clustersOut);
+			inPath=clustersOut;
+			conf.set(NEW_PRIOR_PATH_KEY, clustersOut.toString());
 			FileSystem fs = FileSystem.get(outPath.toUri(), conf);
+			iteration++;
 			if (isConverged(clustersOut, conf, fs)) {
 				log.info("Elkan Clustering converged");
 				break;
 			}
-			else
-			{
-				log.info("Iteration "+iteration+" - Elkan Clustering Step 3");
-				conf.set(NEW_PRIOR_PATH_KEY, clustersOut.toString());			
-				localInPath=new Path(outPath,ElkanClassifier.ELKAN_VECTORS_DIR+ElkanClassifier.ELKAN_STEP_3+(iteration+1));
-				ElkanStep3Job.run(output2, localInPath, conf);
-			}
-			
-			iteration++;
-			priorPath = clustersOut;			
 		}
-		Path finalClustersIn = new Path(outPath, Cluster.CLUSTERS_DIR
-				+ (iteration - 1) + Cluster.FINAL_ITERATION_SUFFIX);
-		FileSystem.get(clustersOut.toUri(), conf).rename(clustersOut,
-				finalClustersIn);
+
 	}
 
 	/**
@@ -100,7 +139,7 @@ public class ElkanIterator {
 		for (FileStatus part : fs
 				.listStatus(filePath, PathFilters.partFilter())) {
 			SequenceFileValueIterator<ClusterWritable> iterator = new SequenceFileValueIterator<ClusterWritable>(
-					part.getPath(), true, conf);			
+					part.getPath(), true, conf);
 			while (iterator.hasNext()) {
 				ClusterWritable value = iterator.next();
 				if (!value.getValue().isConverged()) {
@@ -111,4 +150,5 @@ public class ElkanIterator {
 		}
 		return true;
 	}
+
 }

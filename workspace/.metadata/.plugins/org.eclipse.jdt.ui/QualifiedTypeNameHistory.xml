@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.apache.mahout.clustering.Cluster"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.fs.PathFilter"/>
+<fullyQualifiedTypeName name="org.apache.mahout.clustering.iterator.CIReducer"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.io.IntWritable"/>
+<fullyQualifiedTypeName name="org.apache.mahout.clustering.iterator.ClusterWritable"/>
+<fullyQualifiedTypeName name="org.apache.mahout.common.iterator.sequencefile.ElkanVectorFilter"/>
+</qualifiedTypeNameHistroy>

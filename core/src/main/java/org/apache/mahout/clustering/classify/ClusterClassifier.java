@@ -66,11 +66,11 @@ public class ClusterClassifier extends AbstractVectorClassifier implements Onlin
   
   private static final String POLICY_FILE_NAME = "_policy";
   
-  private List<Cluster> models;
+  protected List<Cluster> models;
   
-  private String modelClass;
+  protected String modelClass;
   
-  private ClusteringPolicy policy;
+  protected ClusteringPolicy policy;
   
   /**
    * The public constructor accepts a list of clusters to become the models

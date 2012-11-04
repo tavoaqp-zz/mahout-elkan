@@ -15,6 +15,12 @@ import org.apache.mahout.common.iterator.sequencefile.SequenceFileDirValueIterab
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+/**
+ * Does the same thing as KMeansUtil (unfortunately that class is marked as final)
+ * @author gustavo
+ *
+ */
 public class ElkanUtil {
 	private static final Logger log = LoggerFactory.getLogger(ElkanUtil.class);
 

@@ -1,0 +1,60 @@
+package org.apache.mahout.clustering.elkan;
+
+import java.util.List;
+
+import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.classify.ClusterClassifier;
+import org.apache.mahout.common.distance.DistanceMeasure;
+import org.apache.mahout.math.Vector;
+import org.apache.mahout.math.map.OpenHashMap;
+
+public class ElkanSteps {
+
+	public static void updateVectorCentroid(ElkanVector originVector,
+			ClusterClassifier classifier, Vector medianDistanceClusters,
+			OpenHashMap<Integer, Vector> clusterDistanceMatrix,
+			DistanceMeasure measure) {
+		List<Cluster> models = classifier.getModels();
+		if (originVector.getUpperLimit() > medianDistanceClusters
+				.get(originVector.getClusterId())) {
+			int i = 0;
+			for (Cluster model : models) {
+				Integer originClusterId = Integer.valueOf(originVector
+						.getClusterId());
+				if (i != originClusterId) {
+					double lowerLimit = originVector.getLowerLimits().get(i);
+					double upperLimit = originVector.getUpperLimit();
+					Vector clusterVector = models.get(
+							originVector.getClusterId()).getCenter();
+					double clusterDistance = clusterDistanceMatrix.get(
+							Integer.valueOf(i)).getQuick(originClusterId);
+
+					double curDist = 0;
+					if (upperLimit > lowerLimit
+							&& upperLimit > clusterDistance / 2) {
+
+						if (originVector.isCalculateDistance()) {
+							curDist = measure.distance(originVector,
+									clusterVector);
+							originVector.getLowerLimits().setQuick(i, curDist);
+							originVector.setCalculateDistance(false);
+						} else {
+							curDist = originVector.getUpperLimit();
+						}
+					}
+
+					if (curDist > lowerLimit || curDist > clusterDistance / 2) {
+						double newDist = measure.distance(model.getCenter(),
+								originVector);
+						originVector.getLowerLimits().setQuick(i, newDist);
+						if (newDist < curDist) {
+							originVector.setClusterId(i);
+						}
+					}
+				}
+				i++;
+			}
+
+		}
+	}
+}

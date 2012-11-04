@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanStep1Job.java[ElkanStep1Job[ElkanStep1Mapper" modifiers="9" timestamp="1351968946000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.common.iterator.sequencefile{SequenceFileValueIterator.java[SequenceFileValueIterator" modifiers="17" timestamp="1351209408000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanStep1Job.java[ElkanStep1Job" modifiers="1" timestamp="1351968946000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanIterator.java[ElkanIterator" modifiers="1" timestamp="1352025187000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.classify{ClusterClassifier.java[ClusterClassifier" modifiers="1" timestamp="1352020672000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanVector.java[ElkanVector" modifiers="1" timestamp="1351981081000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.iterator{ClusteringPolicyWritable.java[ClusteringPolicyWritable" modifiers="1" timestamp="1351209406000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.math.hadoop{DistributedRowMatrix.java[DistributedRowMatrix" modifiers="1" timestamp="1352021047000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.iterator{ClusterIterator.java[ClusterIterator" modifiers="17" timestamp="1351209406000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.iterator{CIMapper.java[CIMapper" modifiers="1" timestamp="1351209406000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanVectorUpdateMapper.java[ElkanVectorUpdateMapper" modifiers="1" timestamp="1352024857000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanMapper.java[ElkanMapper" modifiers="1025" timestamp="1352024558000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanStep2Job.java[ElkanStep2Job" modifiers="1" timestamp="1351170021000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanClusterDistanceStepJob.java[ElkanClusterDistanceStepJob[ElkanClusterDistanceMapper" modifiers="9" timestamp="1351277208000"/>
+<typeInfo handle="=mahout-math/src\/main\/java&lt;org.apache.mahout.math{DenseMatrix.java[DenseMatrix" modifiers="1" timestamp="1351209439000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.common.iterator.sequencefile{ElkanVectorFilter.java[ElkanVectorFilter" modifiers="1" timestamp="1352025169000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanClassifier.java[ElkanClassifier" modifiers="1" timestamp="1352024288000"/>
+<typeInfo handle="=mahout-core/src\/main\/java&lt;org.apache.mahout.clustering.elkan{ElkanReducer.java[ElkanReducer" modifiers="1" timestamp="1352024297000"/>
+</typeInfoHistroy>

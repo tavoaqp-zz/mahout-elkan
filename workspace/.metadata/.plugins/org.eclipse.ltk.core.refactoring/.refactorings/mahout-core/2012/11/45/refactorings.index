@@ -1,0 +1,18 @@
+1352015620709	Move compilation unit
+1352021252560	Rename type 'ElkanStep1Mapper'
+1352021366569	Rename type 'ElkanVectorMapper'
+1352021632291	Delete element
+1352022979258	Pull up members to 'ElkanMapper'
+1352023168773	Extract method 'setupGeneral'
+1352023536824	Extract method 'setupGeneral'
+1352023580907	Pull up 'setupGeneral(Context, Configuration)' to 'ElkanMapper<KEYIN, VALUEIN>'
+1352024494765	Rename local variable 'j'
+1352024501797	Rename local variable 'clusterIndex'
+1352024725679	Rename local variable 'i'
+1352049739989	Delete element
+1352049791822	Delete element
+1352049799537	Delete element
+1352049806689	Delete element
+1352049832039	Delete element
+1352049845008	Delete element
+1352049977515	Rename method 'iterateTest'

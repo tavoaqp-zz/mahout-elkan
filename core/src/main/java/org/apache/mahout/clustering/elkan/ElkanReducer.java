@@ -1,0 +1,54 @@
+package org.apache.mahout.clustering.elkan;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.iterator.ClusterIterator;
+import org.apache.mahout.clustering.iterator.ClusterWritable;
+import org.apache.mahout.clustering.iterator.ClusteringPolicy;
+
+/**
+ * This class does the same thing as CIReducer but it uses ElkanClassifier.
+ * @author gustavo
+ *
+ */
+public class ElkanReducer extends Reducer<IntWritable,ClusterWritable,IntWritable,ClusterWritable> {
+	  
+	  private ElkanClassifier classifier;
+	  private ClusteringPolicy policy;
+	  
+	  @Override
+	  protected void reduce(IntWritable key, Iterable<ClusterWritable> values, Context context) throws IOException,
+	      InterruptedException {
+	    Iterator<ClusterWritable> iter = values.iterator();
+	    Cluster first = iter.next().getValue(); // there must always be at least one
+	    while (iter.hasNext()) {
+	      Cluster cluster = iter.next().getValue();
+	      first.observe(cluster);
+	    }
+	    List<Cluster> models = new ArrayList<Cluster>();
+	    models.add(first);
+	    classifier = new ElkanClassifier(models, policy);
+	    classifier.close();
+	    context.write(key, new ClusterWritable(first));
+	  }
+
+	  @Override
+	  protected void setup(Context context) throws IOException, InterruptedException {
+	    Configuration conf = context.getConfiguration();
+	    String priorClustersPath = conf.get(ClusterIterator.PRIOR_PATH_KEY);
+	    classifier = new ElkanClassifier();
+	    classifier.readFromSeqFiles(conf, new Path(priorClustersPath));
+	    policy = classifier.getPolicy();
+	    policy.update(classifier);
+	    super.setup(context);
+	  }
+	  
+	}

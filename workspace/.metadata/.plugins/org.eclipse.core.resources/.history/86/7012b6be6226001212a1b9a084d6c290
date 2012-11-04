@@ -1,0 +1,49 @@
+package org.apache.mahout.clustering.elkan;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
+import org.apache.mahout.clustering.iterator.CIReducer;
+
+public class ElkanKMeansJob {
+
+	public static int run(Path input, Path output, Configuration conf,
+			int iteration) {
+		try {
+			Job job = new Job(conf, "Elkan KMeans job.");
+
+			if (iteration == 1)
+				job.setMapperClass(ElkanVectorOneTimeMapper.class);
+			else
+				job.setMapperClass(ElkanVectorUpdateMapper.class);
+			job.setMapOutputKeyClass(Text.class);
+			job.setMapOutputValueClass(ElkanVectorWritable.class);
+
+			job.setReducerClass(CIReducer.class);
+			job.setOutputKeyClass(Text.class);
+			job.setOutputValueClass(ElkanVectorWritable.class);
+
+			job.setOutputFormatClass(SequenceFileOutputFormat.class);
+			FileOutputFormat.setOutputPath(job, output);
+
+			job.setInputFormatClass(SequenceFileInputFormat.class);
+			FileInputFormat.setInputPaths(job, input);
+
+			job.setJarByClass(ElkanKMeansJob.class);
+
+			job.waitForCompletion(true);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace(System.err);
+			return 1;
+		}
+
+		return 0;
+	}
+
+}

@@ -5,6 +5,8 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.apache.mahout.classifier.sgd.PolymorphicWritable;
+import org.apache.mahout.clustering.Cluster;
 import org.apache.mahout.math.Matrix;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
@@ -13,26 +15,25 @@ import org.apache.mahout.math.function.DoubleFunction;
 
 /**
  * This class serves as a decorator to other Vectors. It is mainly used in the
- * Elkan Vector Mapping step to attribute a unique id to every vector in the 
+ * Elkan Vector Mapping step to attribute a unique id to every vector in the
  * dataset.
  */
 
 public class ElkanVector implements Vector {
-	
+
 	private Vector delegate;
 	private Vector lowerLimits;
 	private double upperLimit;
-	private int clusterId;	
+	private int clusterId;
 	private boolean calculateDistance;
 
 	public ElkanVector() {
 	}
-	
-	public ElkanVector(Vector delegate)
-	{
-		this.delegate=delegate;
+
+	public ElkanVector(Vector delegate) {
+		this.delegate = delegate;
 	}
-	
+
 	@Override
 	public String asFormatString() {
 		return delegate.asFormatString();
@@ -248,31 +249,32 @@ public class ElkanVector implements Vector {
 	public ElkanVector clone() {
 		return new ElkanVector(delegate.clone());
 	}
-	
-	public void write(DataOutput out) throws IOException
-	{
+
+	public void write(DataOutput out) throws IOException {
+
 		out.writeBoolean(calculateDistance);
 		out.writeInt(clusterId);
 		out.writeDouble(upperLimit);
 		VectorWritable.writeVector(out, delegate);
-		VectorWritable.writeVector(out, lowerLimits);		
+		VectorWritable.writeVector(out, lowerLimits);
+
 	}
-	
-	public void read(DataInput in) throws IOException
-	{
-		this.calculateDistance=in.readBoolean();
-		this.clusterId=in.readInt();
-		this.upperLimit=in.readDouble();
-		this.delegate=VectorWritable.readVector(in);
-		this.lowerLimits=VectorWritable.readVector(in);
+
+	public void read(DataInput in) throws IOException {
+		this.calculateDistance = in.readBoolean();
+		this.clusterId = in.readInt();
+		this.upperLimit = in.readDouble();
+		this.delegate = VectorWritable.readVector(in);
+		this.lowerLimits = VectorWritable.readVector(in);
+
 	}
 
 	public Vector getLowerLimits() {
 		return lowerLimits;
 	}
-	
-	public void setLowerLimits(Vector lowerLimits){
-		this.lowerLimits=lowerLimits;
+
+	public void setLowerLimits(Vector lowerLimits) {
+		this.lowerLimits = lowerLimits;
 	}
 
 	public void setCenterDistances(Vector centerDistances) {
@@ -311,10 +313,9 @@ public class ElkanVector implements Vector {
 		this.upperLimit = upperLimit;
 	}
 
-	public String toString(){
-		return "l(x):"+lowerLimits.toString()+
-				"- u(x):"+upperLimit+"- c(x):"+clusterId+" - r(x):"+calculateDistance;
+	public String toString() {
+		return "l(x):" + lowerLimits.toString() + "- u(x):" + upperLimit
+				+ "- c(x):" + clusterId + " - r(x):" + calculateDistance;
 	}
-
 
 }

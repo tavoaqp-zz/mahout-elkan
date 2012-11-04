@@ -1,0 +1,117 @@
+package org.apache.mahout.clustering.elkan;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
+import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.classify.ClusterClassifier;
+import org.apache.mahout.clustering.iterator.ClusterIterator;
+import org.apache.mahout.clustering.iterator.ClusterWritable;
+import org.apache.mahout.clustering.iterator.ClusteringPolicy;
+import org.apache.mahout.clustering.kmeans.KMeansConfigKeys;
+import org.apache.mahout.common.ClassUtils;
+import org.apache.mahout.common.distance.DistanceMeasure;
+import org.apache.mahout.math.DenseVector;
+import org.apache.mahout.math.MatrixSlice;
+import org.apache.mahout.math.Vector;
+import org.apache.mahout.math.VectorWritable;
+import org.apache.mahout.math.hadoop.DistributedRowMatrix;
+import org.apache.mahout.math.map.OpenHashMap;
+
+public abstract class ElkanMapper<KEYIN, VALUEIN> extends
+		Mapper<KEYIN, VALUEIN, IntWritable, ClusterWritable> {
+
+	protected ElkanClassifier classifier;
+	protected ClusteringPolicy policy;
+	protected Vector medianDistanceClusters;
+	protected DistanceMeasure measure;
+	protected OpenHashMap<Integer, Vector> clusterDistanceMatrix;
+	protected MultipleOutputs<Text, VectorWritable> m_multiOutputs;
+
+	@Override
+	protected void setup(Context context) throws IOException,
+			InterruptedException {
+		Configuration conf = context.getConfiguration();
+		String measureClass = conf.get(KMeansConfigKeys.DISTANCE_MEASURE_KEY);
+		measure = ClassUtils.instantiateAs(measureClass, DistanceMeasure.class);
+
+		String priorClustersPath = conf.get(ClusterIterator.PRIOR_PATH_KEY);
+		classifier = new ElkanClassifier();
+		classifier.readFromSeqFiles(conf, new Path(priorClustersPath));
+		policy = classifier.getPolicy();
+		policy.update(classifier);
+
+		int i = 0;
+		medianDistanceClusters = new DenseVector(classifier.getModels().size());
+
+		for (Cluster model : classifier.getModels()) {
+			Vector centerDistances = new DenseVector(classifier.getModels()
+					.size());
+			int j = 0;
+			for (Cluster oth_model : classifier.getModels()) {
+				centerDistances.setQuick(
+						j,
+						measure.distance(model.getCenter(),
+								oth_model.getCenter()));
+				j++;
+			}
+
+			double sCenter = centerDistances.minValue() / 2;
+			medianDistanceClusters.setQuick(i, sCenter);
+			i++;
+		}
+
+		clusterDistanceMatrix = new OpenHashMap<Integer, Vector>(classifier
+				.getModels().size());
+		
+		
+
+		
+		for (Cluster model : classifier.getModels()) {
+			Vector distances = new DenseVector(classifier.getModels().size());
+			int j = 0;
+			for (Cluster oth_model : classifier.getModels()) {
+				distances.setQuick(j, measure.distance(oth_model.getCenter(),model.getCenter()));
+			}
+			
+			j++;
+		}
+		
+		Path clusterDistanceMatrixPath = new Path(
+				conf.get(ElkanIterator.CENTROID_DISTANCES_PATH_KEY));
+		Path clusterDistanceMatrixOutput = new Path(
+				conf.get(ElkanIterator.CENTROID_DISTANCES_PATH_KEY) + "/output");
+		DistributedRowMatrix rowMatrix = new DistributedRowMatrix(
+				clusterDistanceMatrixPath, clusterDistanceMatrixOutput,
+				classifier.getModels().size(), classifier.getModels().size());
+		rowMatrix.setConf(conf);
+		Iterator<MatrixSlice> it = rowMatrix.iterator();
+		while (it.hasNext()) {
+			MatrixSlice slice = it.next();
+			clusterDistanceMatrix.put(slice.index(), slice.vector());
+		}
+
+		m_multiOutputs = new MultipleOutputs(context);
+	}
+
+	@Override
+	protected void cleanup(org.apache.hadoop.mapreduce.Mapper.Context context)
+			throws IOException, InterruptedException {
+		List<Cluster> clusters = classifier.getModels();
+		ClusterWritable cw = new ClusterWritable();
+		for (int index = 0; index < clusters.size(); index++) {
+			cw.setValue(clusters.get(index));
+			context.write(new IntWritable(index), cw);
+		}
+		super.cleanup(context);
+	}
+
+}

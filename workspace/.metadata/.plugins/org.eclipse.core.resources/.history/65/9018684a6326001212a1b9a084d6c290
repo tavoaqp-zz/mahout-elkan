@@ -1,0 +1,8 @@
+package org.apache.mahout.clustering.elkan;
+
+import org.apache.hadoop.mapreduce.Mapper;
+
+public abstract class ElkanMapper<KEYIN,VALUEIN> extends 
+	Mapper<KEYIN,VALUEIN,IntWritable,ClusterWritable> {
+
+}

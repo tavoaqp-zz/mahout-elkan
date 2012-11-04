@@ -7,6 +7,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.mahout.clustering.Cluster;
 import org.apache.mahout.clustering.classify.ClusterClassifier;
 import org.apache.mahout.clustering.iterator.ClusterWritable;
+import org.apache.mahout.clustering.iterator.ClusteringPolicy;
 import org.apache.mahout.common.iterator.sequencefile.PathFilters;
 import org.apache.mahout.common.iterator.sequencefile.PathType;
 import org.apache.mahout.common.iterator.sequencefile.SequenceFileDirValueIterable;
@@ -22,16 +23,38 @@ public class ElkanClassifier extends ClusterClassifier{
 	public static String ELKAN_STEP_3="step-3";
 	public static String ELKAN_STEP_4="step-4";
 	
+	public ElkanClassifier(List<Cluster> models, ClusteringPolicy policy) {
+		super(models,policy);
+	}
+
+	public ElkanClassifier() {
+		super();
+	}
+
 	public List<Cluster> readNewModelsFromSeqFiles(Configuration conf, Path path) throws IOException {
 	    Configuration config = new Configuration();
 	    List<Cluster> clusters = Lists.newArrayList();
 	    for (ClusterWritable cw : new SequenceFileDirValueIterable<ClusterWritable>(path, PathType.LIST,
-	        PathFilters.logsCRCFilter(), config)) {
+	        PathFilters.logsPartCRCFilter(), config)) {
 	      Cluster cluster = cw.getValue();
 	      cluster.configure(conf);
 	      clusters.add(cluster);
 	    }
 	    return clusters;	    
+	  }
+	
+	public void readFromSeqFiles(Configuration conf, Path path) throws IOException {
+	    Configuration config = new Configuration();
+	    List<Cluster> clusters = Lists.newArrayList();
+	    for (ClusterWritable cw : new SequenceFileDirValueIterable<ClusterWritable>(path, PathType.LIST,
+	        PathFilters.logsPartCRCFilter(), config)) {
+	      Cluster cluster = cw.getValue();
+	      cluster.configure(conf);
+	      clusters.add(cluster);
+	    }
+	    this.models = clusters;
+	    modelClass = models.get(0).getClass().getName();
+	    this.policy = readPolicy(path);
 	  }
 
 }
