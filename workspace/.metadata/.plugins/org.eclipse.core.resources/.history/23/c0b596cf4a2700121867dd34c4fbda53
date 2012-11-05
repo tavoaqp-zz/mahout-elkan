@@ -99,7 +99,6 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 		m_multiOutputs.close();
 		clusterDistanceMatrix.clear();
 		clusterDistanceMatrix=null;
-		medianDistanceClusters=null;
 		
 		super.cleanup(context);
 	}

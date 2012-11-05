@@ -42,10 +42,4 @@ public class ElkanVectorOneTimeMapper extends
 		m_multiOutputs.write(ElkanVectorFilter.ELKAN_VECTOR_PREFIX, key, new ElkanVectorWritable(elkanVector));
 	}
 
-	@Override
-	protected void cleanup(org.apache.hadoop.mapreduce.Mapper.Context context)
-			throws IOException, InterruptedException {
-		super.cleanup(context);
-	}
-
 }

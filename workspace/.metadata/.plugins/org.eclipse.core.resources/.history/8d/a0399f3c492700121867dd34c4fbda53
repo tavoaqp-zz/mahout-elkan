@@ -79,7 +79,8 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 			for (Cluster oth_model : classifier.getModels()) {
 				distances.setQuick(colIndex, measure.distance(oth_model.getCenter(),model.getCenter()));
 				colIndex++;
-			}			
+			}
+			
 			clusterDistanceMatrix.put(rowIndex, distances);
 			rowIndex++;
 		}		
@@ -97,10 +98,6 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 			context.write(new IntWritable(index), cw);
 		}
 		m_multiOutputs.close();
-		clusterDistanceMatrix.clear();
-		clusterDistanceMatrix=null;
-		medianDistanceClusters=null;
-		
 		super.cleanup(context);
 	}
 

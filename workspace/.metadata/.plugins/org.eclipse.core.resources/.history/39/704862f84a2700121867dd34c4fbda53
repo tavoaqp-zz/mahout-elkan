@@ -49,13 +49,4 @@ public class ElkanVectorUpdateMapper extends
 		classifier.train(elkanVector.getClusterId(), elkanVector.getDelegate(), 1.0);
 		m_multiOutputs.write(ElkanVectorFilter.ELKAN_VECTOR_PREFIX, key, new ElkanVectorWritable(elkanVector));
 	}
-
-	@Override
-	protected void cleanup(org.apache.hadoop.mapreduce.Mapper.Context context)
-			throws IOException, InterruptedException {
-		oldClusterDistances=null;
-		super.cleanup(context);
-	}
-	
-	
 }

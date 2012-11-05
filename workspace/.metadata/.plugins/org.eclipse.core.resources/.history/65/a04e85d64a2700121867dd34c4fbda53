@@ -100,7 +100,6 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 		clusterDistanceMatrix.clear();
 		clusterDistanceMatrix=null;
 		medianDistanceClusters=null;
-		
 		super.cleanup(context);
 	}
 

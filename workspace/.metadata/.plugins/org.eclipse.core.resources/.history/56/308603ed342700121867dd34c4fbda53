@@ -34,7 +34,7 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 	protected Vector medianDistanceClusters;
 	protected DistanceMeasure measure;
 	protected OpenHashMap<Integer, Vector> clusterDistanceMatrix;
-	protected MultipleOutputs<Text, ElkanVectorWritable> m_multiOutputs;
+	protected MultipleOutputs<Text, VectorWritable> m_multiOutputs;
 
 	@Override
 	protected void setup(Context context) throws IOException,
@@ -79,7 +79,8 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 			for (Cluster oth_model : classifier.getModels()) {
 				distances.setQuick(colIndex, measure.distance(oth_model.getCenter(),model.getCenter()));
 				colIndex++;
-			}			
+			}
+			
 			clusterDistanceMatrix.put(rowIndex, distances);
 			rowIndex++;
 		}		
@@ -96,11 +97,6 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 			cw.setValue(clusters.get(index));
 			context.write(new IntWritable(index), cw);
 		}
-		m_multiOutputs.close();
-		clusterDistanceMatrix.clear();
-		clusterDistanceMatrix=null;
-		medianDistanceClusters=null;
-		
 		super.cleanup(context);
 	}
 
