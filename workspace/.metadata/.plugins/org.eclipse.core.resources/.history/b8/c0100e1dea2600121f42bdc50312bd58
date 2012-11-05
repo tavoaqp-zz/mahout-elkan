@@ -136,7 +136,7 @@ public class ElkanIterator {
 	 */
 	private boolean isConverged(Path filePath, Configuration conf, FileSystem fs)
 			throws IOException {
-		
+		boolean result=true;
 		for (FileStatus part : fs
 				.listStatus(filePath, PathFilters.partFilter())) {
 			SequenceFileValueIterator<ClusterWritable> iterator = new SequenceFileValueIterator<ClusterWritable>(
@@ -145,12 +145,15 @@ public class ElkanIterator {
 				ClusterWritable value = iterator.next();
 				if (!value.getValue().isConverged()) {					
 					Closeables.closeQuietly(iterator);
-					return false;					
+					log.info("Cluster "+value.getValue().getId()+" has not converged");
+					result=false;					
 				}
+				else
+					log.info("Cluster "+value.getValue().getId()+" has converged");
 			}
 		}
 		
-		return true;
+		return result;
 	}
 
 }

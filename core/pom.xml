@@ -198,10 +198,10 @@
   
   <profiles>
     <profile>
-      <id>hadoop-0.20</id>
+      <id>hadoop-1.0.0</id>
       <activation>
         <property>
-          <name>!hadoop.version</name>
+          <name>hadoop.version</name>
         </property>
       </activation>
       <dependencies>
@@ -215,7 +215,7 @@
       <id>hadoop-0.23</id>
       <activation>
         <property>
-          <name>hadoop.version</name>
+          <name>!hadoop.version</name>
         </property>
       </activation>
       <dependencies>

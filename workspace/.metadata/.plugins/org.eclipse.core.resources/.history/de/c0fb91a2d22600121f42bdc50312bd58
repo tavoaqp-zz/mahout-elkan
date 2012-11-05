@@ -78,7 +78,7 @@ public class ElkanIterator {
 			conf.set(PRIOR_PATH_KEY, priorPath.toString());
 			
 			Job job = new Job(conf, "Elkan Kmeans job.");
-			
+
 			if (iteration == 1)
 				job.setMapperClass(ElkanVectorOneTimeMapper.class);
 			else
@@ -136,7 +136,7 @@ public class ElkanIterator {
 	 */
 	private boolean isConverged(Path filePath, Configuration conf, FileSystem fs)
 			throws IOException {
-		
+		boolean result=false;
 		for (FileStatus part : fs
 				.listStatus(filePath, PathFilters.partFilter())) {
 			SequenceFileValueIterator<ClusterWritable> iterator = new SequenceFileValueIterator<ClusterWritable>(
@@ -145,11 +145,11 @@ public class ElkanIterator {
 				ClusterWritable value = iterator.next();
 				if (!value.getValue().isConverged()) {					
 					Closeables.closeQuietly(iterator);
-					return false;					
+					return false;
+					log.info("Cluster "+value.getValue().getId()+" has not converged");
 				}
 			}
 		}
-		
 		return true;
 	}
 

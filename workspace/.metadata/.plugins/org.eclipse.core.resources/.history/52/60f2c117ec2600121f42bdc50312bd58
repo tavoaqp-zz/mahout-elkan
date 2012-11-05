@@ -136,7 +136,7 @@ public class ElkanIterator {
 	 */
 	private boolean isConverged(Path filePath, Configuration conf, FileSystem fs)
 			throws IOException {
-		
+		boolean result=true;
 		for (FileStatus part : fs
 				.listStatus(filePath, PathFilters.partFilter())) {
 			SequenceFileValueIterator<ClusterWritable> iterator = new SequenceFileValueIterator<ClusterWritable>(
