@@ -17,11 +17,10 @@ import com.google.common.collect.Lists;
 public class ElkanClassifier extends ClusterClassifier{
 	
 	public static final String CLUSTER_DISTANCES_DIR = "elkanClusterDistances";
-	public static String ELKAN_VECTORS_DIR="elkanVectors-";
-	public static String ELKAN_STEP_1="step-1";
-	public static String ELKAN_STEP_2="step-2";
-	public static String ELKAN_STEP_3="step-3";
-	public static String ELKAN_STEP_4="step-4";
+	public static String ELKAN_VECTORS_DIR="elkanVectors-";	
+	public static String CLUSTER_DISTANCE_PATH="clusterDistances";
+	public static String CLUSTER_DISTANCE_KEY="clusterDistancesKey";
+	public static String NUM_CLUSTERS="numClusters";
 	
 	public ElkanClassifier(List<Cluster> models, ClusteringPolicy policy) {
 		super(models,policy);

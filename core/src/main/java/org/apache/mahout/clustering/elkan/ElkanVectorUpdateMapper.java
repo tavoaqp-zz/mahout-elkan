@@ -21,22 +21,7 @@ public class ElkanVectorUpdateMapper extends
 			InterruptedException {
 
 		super.setup(context);
-
-		Configuration conf = context.getConfiguration();
-		String newPriorClustersPath = conf
-				.get(ElkanIterator.NEW_PRIOR_PATH_KEY);
-
-		List<Cluster> newModels = classifier.readNewModelsFromSeqFiles(conf,
-				new Path(newPriorClustersPath));
-
-		oldClusterDistances = new DenseVector(newModels.size());
-		for (int i = 0; i < newModels.size(); i++) {
-			Vector oldCenter = classifier.getModels().get(i).getCenter();
-			Vector newCenter = newModels.get(i).getCenter();
-			oldClusterDistances.setQuick(i,
-					measure.distance(oldCenter, newCenter));
-		}
-
+		oldClusterDistances = vectorCache.getOldClusterDistances();
 	}
 
 	@Override
@@ -45,7 +30,7 @@ public class ElkanVectorUpdateMapper extends
 		ElkanVector elkanVector = value.get();
 		ElkanSteps.updateVectorLimits(elkanVector, oldClusterDistances);
 		ElkanSteps.updateVectorCentroid(elkanVector, classifier,
-				medianDistanceClusters, clusterDistanceMatrix, measure);
+				halfClusterDistances, vectorCache, measure);
 		classifier.train(elkanVector.getClusterId(), elkanVector.getDelegate(), 1.0);
 		m_multiOutputs.write(ElkanVectorFilter.ELKAN_VECTOR_PREFIX, key, new ElkanVectorWritable(elkanVector));
 	}

@@ -11,23 +11,23 @@ import org.apache.mahout.math.map.OpenHashMap;
 public class ElkanSteps {
 
 	public static void updateVectorCentroid(ElkanVector originVector,
-			ClusterClassifier classifier, Vector medianDistanceClusters,
-			OpenHashMap<Integer, Vector> clusterDistanceMatrix,
+			ClusterClassifier classifier, Vector halfClusterDistances,
+			ElkanClusterDistancesCache clusterDistanceMatrix,
 			DistanceMeasure measure) {
 		List<Cluster> models = classifier.getModels();
-		if (originVector.getUpperLimit() > medianDistanceClusters
+		if (originVector.getUpperLimit() > halfClusterDistances
 				.get(originVector.getClusterId())) {
-			int i = 0;
+			int currClusterId = 0;
 			for (Cluster model : models) {
 				Integer originClusterId = Integer.valueOf(originVector
 						.getClusterId());
-				if (i != originClusterId) {
-					double lowerLimit = originVector.getLowerLimits().get(i);
+				if (currClusterId != originClusterId) {
+					double lowerLimit = originVector.getLowerLimits().get(currClusterId);
 					double upperLimit = originVector.getUpperLimit();
 					Vector clusterVector = models.get(
 							originVector.getClusterId()).getCenter();
-					double clusterDistance = clusterDistanceMatrix.get(
-							Integer.valueOf(i)).getQuick(originClusterId);
+					Vector clusterDistances=clusterDistanceMatrix.get(currClusterId); 
+					double clusterDistance = clusterDistances.getQuick(originClusterId);
 
 					double curDist = 0;
 					if (upperLimit > lowerLimit
@@ -36,7 +36,7 @@ public class ElkanSteps {
 						if (originVector.isCalculateDistance()) {
 							curDist = measure.distance(originVector,
 									clusterVector);
-							originVector.getLowerLimits().setQuick(i, curDist);
+							originVector.getLowerLimits().setQuick(currClusterId, curDist);
 							originVector.setCalculateDistance(false);
 						} else {
 							curDist = originVector.getUpperLimit();
@@ -46,13 +46,13 @@ public class ElkanSteps {
 					if (curDist > lowerLimit || curDist > clusterDistance / 2) {
 						double newDist = measure.distance(model.getCenter(),
 								originVector);
-						originVector.getLowerLimits().setQuick(i, newDist);
+						originVector.getLowerLimits().setQuick(currClusterId, newDist);
 						if (newDist < curDist) {
-							originVector.setClusterId(i);
+							originVector.setClusterId(currClusterId);
 						}
 					}
 				}
-				i++;
+				currClusterId++;
 			}
 
 		}

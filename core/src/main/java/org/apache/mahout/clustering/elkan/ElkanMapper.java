@@ -25,16 +25,20 @@ import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
 import org.apache.mahout.math.hadoop.DistributedRowMatrix;
 import org.apache.mahout.math.map.OpenHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 		Mapper<KEYIN, VALUEIN, IntWritable, ClusterWritable> {
 
 	protected ElkanClassifier classifier;
 	protected ClusteringPolicy policy;
-	protected Vector medianDistanceClusters;
+	protected Vector halfClusterDistances;
 	protected DistanceMeasure measure;
-	protected OpenHashMap<Integer, Vector> clusterDistanceMatrix;
 	protected MultipleOutputs<Text, ElkanVectorWritable> m_multiOutputs;
+	protected ElkanClusterDistancesCache vectorCache;
+	private static final Logger log = LoggerFactory
+			.getLogger(ElkanMapper.class);
 
 	@Override
 	protected void setup(Context context) throws IOException,
@@ -42,48 +46,24 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 		Configuration conf = context.getConfiguration();
 		String measureClass = conf.get(KMeansConfigKeys.DISTANCE_MEASURE_KEY);
 		measure = ClassUtils.instantiateAs(measureClass, DistanceMeasure.class);
-
+		
+		String clusterDistancePath=conf.get(ElkanClassifier.CLUSTER_DISTANCE_KEY);
+		log.info("Current distances key at Mapper "+clusterDistancePath);
+		
+		String numClustersValue=conf.get(ElkanClassifier.NUM_CLUSTERS);
+		log.info("num clusters key at Mapper "+numClustersValue);
+		int numClusters=Integer.parseInt(numClustersValue);
+		
+		Path distancesPath=new Path(clusterDistancePath);
+		vectorCache=new ElkanClusterDistancesCache(numClusters,conf,distancesPath);
+		vectorCache.preload();
+		
 		String priorClustersPath = conf.get(ClusterIterator.PRIOR_PATH_KEY);
 		classifier = new ElkanClassifier();
 		classifier.readFromSeqFiles(conf, new Path(priorClustersPath));
 		policy = classifier.getPolicy();
 		policy.update(classifier);
-
-		int i = 0;
-		medianDistanceClusters = new DenseVector(classifier.getModels().size());
-
-		for (Cluster model : classifier.getModels()) {
-			Vector centerDistances = new DenseVector(classifier.getModels()
-					.size());
-			int j = 0;
-			for (Cluster oth_model : classifier.getModels()) {
-				centerDistances.setQuick(
-						j,
-						measure.distance(model.getCenter(),
-								oth_model.getCenter()));
-				j++;
-			}
-
-			double sCenter = centerDistances.minValue() / 2;
-			medianDistanceClusters.setQuick(i, sCenter);
-			i++;
-		}
-
-		clusterDistanceMatrix = new OpenHashMap<Integer, Vector>(classifier
-				.getModels().size());		
-
-		int rowIndex=0;
-		for (Cluster model : classifier.getModels()) {
-			Vector distances = new DenseVector(classifier.getModels().size());
-			int colIndex = 0;
-			for (Cluster oth_model : classifier.getModels()) {
-				distances.setQuick(colIndex, measure.distance(oth_model.getCenter(),model.getCenter()));
-				colIndex++;
-			}			
-			clusterDistanceMatrix.put(rowIndex, distances);
-			rowIndex++;
-		}		
-
+		halfClusterDistances=vectorCache.getHalfClusterDistances();		
 		m_multiOutputs = new MultipleOutputs(context);
 	}
 
@@ -97,10 +77,9 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 			context.write(new IntWritable(index), cw);
 		}
 		m_multiOutputs.close();
-		clusterDistanceMatrix.clear();
-		clusterDistanceMatrix=null;
-		medianDistanceClusters=null;
-		
+		halfClusterDistances=null;
+		vectorCache.cleanup();
+		vectorCache=null;
 		super.cleanup(context);
 	}
 

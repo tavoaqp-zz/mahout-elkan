@@ -37,7 +37,7 @@ public class ElkanVectorOneTimeMapper extends
 		elkanVector.setCalculateDistance(true);
 		elkanVector.setUpperLimit(probabilities.minValue());
 		ElkanSteps.updateVectorCentroid(elkanVector, classifier,
-				medianDistanceClusters, clusterDistanceMatrix, measure);
+				halfClusterDistances, vectorCache, measure);
 		classifier.train(elkanVector.getClusterId(), elkanVector.getDelegate(), 1.0);
 		m_multiOutputs.write(ElkanVectorFilter.ELKAN_VECTOR_PREFIX, key, new ElkanVectorWritable(elkanVector));
 	}

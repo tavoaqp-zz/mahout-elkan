@@ -1,0 +1,59 @@
+package org.apache.mahout.clustering.elkan;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.classify.ClusterClassifier;
+import org.apache.mahout.clustering.iterator.ClusterWritable;
+import org.apache.mahout.clustering.iterator.ClusteringPolicy;
+import org.apache.mahout.common.iterator.sequencefile.PathFilters;
+import org.apache.mahout.common.iterator.sequencefile.PathType;
+import org.apache.mahout.common.iterator.sequencefile.SequenceFileDirValueIterable;
+
+import com.google.common.collect.Lists;
+
+public class ElkanClassifier extends ClusterClassifier{
+	
+	public static final String CLUSTER_DISTANCES_DIR = "elkanClusterDistances";
+	public static String ELKAN_VECTORS_DIR="elkanVectors-";	
+	public static String CLUSTER_DISTANCE_PATH="clusterDistances";
+	public static String CLUSTER_DISTANCE_FILENAME="clusterDistancesVector";
+	public static String CLUSTER_SIZE="clusterSize";
+	
+	public ElkanClassifier(List<Cluster> models, ClusteringPolicy policy) {
+		super(models,policy);
+	}
+
+	public ElkanClassifier() {
+		super();
+	}
+
+	public List<Cluster> readNewModelsFromSeqFiles(Configuration conf, Path path) throws IOException {
+	    Configuration config = new Configuration();
+	    List<Cluster> clusters = Lists.newArrayList();
+	    for (ClusterWritable cw : new SequenceFileDirValueIterable<ClusterWritable>(path, PathType.LIST,
+	        PathFilters.logsPartCRCFilter(), config)) {
+	      Cluster cluster = cw.getValue();
+	      cluster.configure(conf);
+	      clusters.add(cluster);
+	    }
+	    return clusters;	    
+	  }
+	
+	public void readFromSeqFiles(Configuration conf, Path path) throws IOException {
+	    Configuration config = new Configuration();
+	    List<Cluster> clusters = Lists.newArrayList();
+	    for (ClusterWritable cw : new SequenceFileDirValueIterable<ClusterWritable>(path, PathType.LIST,
+	        PathFilters.logsPartCRCFilter(), config)) {
+	      Cluster cluster = cw.getValue();
+	      cluster.configure(conf);
+	      clusters.add(cluster);
+	    }
+	    this.models = clusters;
+	    modelClass = models.get(0).getClass().getName();
+	    this.policy = readPolicy(path);
+	  }
+
+}

@@ -16,3 +16,14 @@
 1352049832039	Delete element
 1352049845008	Delete element
 1352049977515	Rename method 'iterateTest'
+1352396027111	Rename local variable 'clusterSize'
+1352398349178	Extract method 'writeClusterDistances'
+1352398645982	Rename field 'CLUSTER_SIZE'
+1352405930711	Rename local variable 'i'
+1352406762762	Rename local variable 'cacheSize'
+1352406770766	Rename local variable 'cacheSize'
+1352408606929	Rename type 'ElkanVectorCache'
+1352409596511	Rename local variable 'rowIndex'
+1352410462807	Rename field 'medianDistanceClusters'
+1352410474013	Rename field 'halfDistanceClusters'
+1352410522508	Rename local variable 'medianDistanceClusters'
