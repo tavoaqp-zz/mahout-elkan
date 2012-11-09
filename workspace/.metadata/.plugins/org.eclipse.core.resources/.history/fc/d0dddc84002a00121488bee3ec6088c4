@@ -13,7 +13,6 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.PathFilter;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.mapred.JobConf;
@@ -110,7 +109,7 @@ public class ElkanIterator {
 			priorPath = clustersOut;
 			FileOutputFormat.setOutputPath(job, clustersOut);
 			MultipleOutputs.addNamedOutput(job, ElkanVectorFilter.ELKAN_VECTOR_PREFIX,
-					SequenceFileOutputFormat.class, LongWritable.class,
+					SequenceFileOutputFormat.class, Text.class,
 					ElkanVectorWritable.class);			
 			
 			FileInputFormat.addInputPath(job, inPath);

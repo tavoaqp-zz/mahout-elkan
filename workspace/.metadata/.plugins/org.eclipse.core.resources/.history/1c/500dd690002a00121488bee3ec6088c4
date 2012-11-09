@@ -48,8 +48,10 @@ public abstract class ElkanMapper<KEYIN, VALUEIN> extends
 		measure = ClassUtils.instantiateAs(measureClass, DistanceMeasure.class);
 		
 		String clusterDistancePath=conf.get(ElkanClassifier.CLUSTER_DISTANCE_KEY);
+		log.info("Current distances key at Mapper "+clusterDistancePath);
 		
 		String numClustersValue=conf.get(ElkanClassifier.NUM_CLUSTERS);
+		log.info("num clusters key at Mapper "+numClustersValue);
 		int numClusters=Integer.parseInt(numClustersValue);
 		
 		Path distancesPath=new Path(clusterDistancePath);
