@@ -27,3 +27,4 @@
 1352410462807	Rename field 'medianDistanceClusters'
 1352410474013	Rename field 'halfDistanceClusters'
 1352410522508	Rename local variable 'medianDistanceClusters'
+1352487214601	Rename local variable 'i'

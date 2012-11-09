@@ -71,9 +71,10 @@ public class ElkanIterator {
 	 * @param numIterations
 	 *            the int number of iterations to perform
 	 * @param measure 
+	 * @param namedVectors 
 	 */
 	public void iterateMR(Configuration conf, Path inPath, Path priorPath,
-			Path outPath, int numIterations, DistanceMeasure measure, int numClusters) throws IOException,
+			Path outPath, int numIterations, DistanceMeasure measure, int numClusters, boolean namedVectors) throws IOException,
 			InterruptedException, ClassNotFoundException {
 		conf.set(ElkanClassifier.NUM_CLUSTERS,numClusters+"");
 		ClusteringPolicy policy = ClusterClassifier.readPolicy(priorPath);
@@ -85,7 +86,6 @@ public class ElkanIterator {
 			String distancesPath=ElkanClassifier.CLUSTER_DISTANCE_PATH+iteration;			
 			Path cacheOutput=new Path(outPath,distancesPath);
 			conf.set(ElkanClassifier.CLUSTER_DISTANCE_KEY, cacheOutput.toString());
-			log.info("Current distances key "+conf.get(ElkanClassifier.CLUSTER_DISTANCE_KEY));
 			
 			writeClusterDistances(conf, priorPath, cacheOutput, measure,
 					numClusters, iteration);
@@ -109,9 +109,14 @@ public class ElkanIterator {
 			clustersOut = new Path(outPath, Cluster.CLUSTERS_DIR + iteration);
 			priorPath = clustersOut;
 			FileOutputFormat.setOutputPath(job, clustersOut);
-			MultipleOutputs.addNamedOutput(job, ElkanVectorFilter.ELKAN_VECTOR_PREFIX,
-					SequenceFileOutputFormat.class, LongWritable.class,
-					ElkanVectorWritable.class);			
+			if (namedVectors)
+				MultipleOutputs.addNamedOutput(job, ElkanVectorFilter.ELKAN_VECTOR_PREFIX,
+					SequenceFileOutputFormat.class, Text.class,
+					ElkanVectorWritable.class);
+			else
+				MultipleOutputs.addNamedOutput(job, ElkanVectorFilter.ELKAN_VECTOR_PREFIX,
+						SequenceFileOutputFormat.class, LongWritable.class,
+						ElkanVectorWritable.class);
 			
 			FileInputFormat.addInputPath(job, inPath);
 			if (iteration>1)
@@ -166,11 +171,18 @@ public class ElkanIterator {
 
 			List<Cluster> newModels = classifier.readNewModelsFromSeqFiles(conf,
 					new Path(newPriorClustersPath));
-
-			Vector oldClusterDistances = new DenseVector(newModels.size());
+			List<Cluster> oldModels = classifier.getModels();
+			
+			Cluster[] newModelsArray=newModels.toArray(new Cluster[newModels.size()]);
+			newModels.clear();		
+			
+			Cluster[] oldModelsArray=oldModels.toArray(new Cluster[oldModels.size()]);
+			oldModels.clear();
+			
+			Vector oldClusterDistances = new DenseVector(newModelsArray.length);
 			for (int i = 0; i < newModels.size(); i++) {
-				Vector oldCenter = classifier.getModels().get(i).getCenter();
-				Vector newCenter = newModels.get(i).getCenter();
+				Vector oldCenter = oldModelsArray[i].getCenter();
+				Vector newCenter = newModelsArray[i].getCenter();
 				oldClusterDistances.setQuick(i,
 						measure.distance(oldCenter, newCenter));
 			}

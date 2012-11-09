@@ -7,6 +7,7 @@ import org.apache.mahout.common.commandline.DefaultOptionCreator;
 public class ElkanOptionCreator {
 	
 	public static final String GENERATE_CLUSTERS_OPTION = "genClusters";
+	public static final String NAMED_VECTORS_OPTION = "namedVectors";
 	
 	public static DefaultOptionBuilder numClustersOption() {
 	    return new DefaultOptionBuilder()
@@ -22,9 +23,14 @@ public class ElkanOptionCreator {
 	    return new DefaultOptionBuilder()
 	        .withLongName(GENERATE_CLUSTERS_OPTION)
 	        .withRequired(false)
-	        .withArgument(
-	            new ArgumentBuilder().withName("genClusters").withMinimum(1).withMaximum(1)
-	                .create()).withDescription("The number of clusters to create");
+	        .withDescription("If present generates random clusters");
+	  }
+	
+	public static DefaultOptionBuilder useNamedVectors() {
+	    return new DefaultOptionBuilder()
+	        .withLongName(NAMED_VECTORS_OPTION)
+	        .withRequired(false)
+	        .withDescription("If present Elkan will use NamedVectors");
 	  }
 
 }

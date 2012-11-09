@@ -70,6 +70,8 @@ public class ElkanDriver extends AbstractJob {
 				.withDescription(
 						"The k in Elkan k-Means. It is required in order to create a matrix of cluster distances. You can specify genClusters option to reuse an existing clusters dataset")
 				.create());
+		addOption(ElkanOptionCreator
+				.useNamedVectors().create());
 		addOption(ElkanOptionCreator.generateClusters().create());
 		addOption(DefaultOptionCreator.convergenceOption().create());
 		addOption(DefaultOptionCreator.maxIterationsOption().create());
@@ -106,6 +108,7 @@ public class ElkanDriver extends AbstractJob {
 			clusters = RandomSeedGenerator
 					.buildRandom(getConf(),	input, clusters,numClusters,measure);
 		}
+		boolean namedVectors = hasOption(ElkanOptionCreator.NAMED_VECTORS_OPTION);
 		boolean runClustering = hasOption(DefaultOptionCreator.CLUSTERING_OPTION);
 		boolean runSequential = getOption(DefaultOptionCreator.METHOD_OPTION)
 				.equalsIgnoreCase(DefaultOptionCreator.SEQUENTIAL_METHOD);
@@ -119,7 +122,7 @@ public class ElkanDriver extends AbstractJob {
 		}
 		run(getConf(), input, clusters, output, measure, convergenceDelta,
 				maxIterations, runClustering, clusterClassificationThreshold,
-				runSequential,numClusters);
+				runSequential,numClusters, namedVectors);
 		return 0;
 	}
 
@@ -152,7 +155,7 @@ public class ElkanDriver extends AbstractJob {
 	public static void run(Configuration conf, Path input, Path clustersIn,
 			Path output, DistanceMeasure measure, double convergenceDelta,
 			int maxIterations, boolean runClustering,
-			double clusterClassificationThreshold, boolean runSequential, int numClusters)
+			double clusterClassificationThreshold, boolean runSequential, int numClusters, boolean namedVectors)
 			throws IOException, InterruptedException, ClassNotFoundException {
 
 		// iterate until the clusters converge
@@ -167,7 +170,7 @@ public class ElkanDriver extends AbstractJob {
 							VectorWritable.class.getName() });
 		}
 		Path clustersOut = buildClusters(conf, input, clustersIn, output,
-				measure, maxIterations, delta, runSequential, numClusters);
+				measure, maxIterations, delta, runSequential, numClusters, namedVectors);
 		if (runClustering) {
 			log.info("Clustering data");
 			clusterData(conf, input, clustersOut, output, measure,
@@ -204,11 +207,11 @@ public class ElkanDriver extends AbstractJob {
 	public static void run(Path input, Path clustersIn, Path output,
 			DistanceMeasure measure, double convergenceDelta,
 			int maxIterations, boolean runClustering,
-			double clusterClassificationThreshold, boolean runSequential, int numClusters)
+			double clusterClassificationThreshold, boolean runSequential, int numClusters, boolean namedVectors)
 			throws IOException, InterruptedException, ClassNotFoundException {
 		run(new Configuration(), input, clustersIn, output, measure,
 				convergenceDelta, maxIterations, runClustering,
-				clusterClassificationThreshold, runSequential,numClusters);
+				clusterClassificationThreshold, runSequential,numClusters,namedVectors);
 	}
 
 	/**
@@ -237,7 +240,7 @@ public class ElkanDriver extends AbstractJob {
 	 */
 	public static Path buildClusters(Configuration conf, Path input,
 			Path clustersIn, Path output, DistanceMeasure measure,
-			int maxIterations, String delta, boolean runSequential, int numClusters)
+			int maxIterations, String delta, boolean runSequential, int numClusters, boolean namedVectors)
 			throws IOException, InterruptedException, ClassNotFoundException {
 
 		double convergenceDelta = Double.parseDouble(delta);
@@ -260,7 +263,7 @@ public class ElkanDriver extends AbstractJob {
 			//		output, maxIterations);
 		} else {
 			new ElkanIterator().iterateMR(conf, input, priorClustersPath,
-					output, maxIterations, measure,numClusters);
+					output, maxIterations, measure,numClusters, namedVectors);
 		}
 		return output;
 	}
