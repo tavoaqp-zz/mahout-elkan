@@ -29,7 +29,6 @@ import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.mahout.clustering.Cluster;
 import org.apache.mahout.clustering.classify.ClusterClassifier;
-import org.apache.mahout.clustering.elkan.ElkanClusterDistanceStepJob.ElkanClusterDistanceMapper;
 import org.apache.mahout.clustering.iterator.CIReducer;
 import org.apache.mahout.clustering.iterator.ClusterIterator;
 import org.apache.mahout.clustering.iterator.ClusterWritable;
